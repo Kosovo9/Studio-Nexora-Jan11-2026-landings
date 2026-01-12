@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>STUDIO NEXORA | Socio Nexora - Landing Pages de Lujo en 24h</title>
+    
+    <!-- SEO Elite Pack -->
+    <meta name="description" content="Desarrollo de Landing Pages nivel Socio Nexora. Entrega garantizada en menos de 24 horas. Diseño premium, responsive y orientado a resultados. Pagas solo si te encanta.">
+    <meta name="keywords" content="nexora studio, socio nexora, landing page de lujo, diseño web elite, experto gemini, desarrollo web 24h, portfolio premium mxn usd">
+    <meta name="author" content="Nexora Build Director">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://nexorastudio.com" />
+    
+    <meta name="theme-color" content="#050a14">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --nexora-navy: #050a14;
+            --nexora-gold: #fef08a; /* Color superior del degradado */
+            --nexora-gold-deep: #eab308; /* Color inferior del degradado */
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--nexora-navy);
+            color: #ffffff;
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+        
+        /* TIPOGRAFIA GIGANTE MONOLITICA - REPLICA EXACTA */
+        .text-huge {
+            font-size: clamp(3.5rem, 15vw, 13.5rem);
+            line-height: 0.72; /* Las letras se tocan verticalmente */
+            letter-spacing: -0.08em; /* Las letras se tocan horizontalmente */
+            font-weight: 950;
+            text-transform: uppercase;
+            display: block;
+        }
+
+        .text-metallic-gold {
+            background: linear-gradient(180deg, #fef08a 0%, #eab308 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            /* Brillo suave alrededor del texto dorado como en la imagen */
+            filter: drop-shadow(0 0 40px rgba(234, 179, 8, 0.5));
+        }
+
+        /* TACHADO NEÓN NARANJA VIBRANTE */
+        .luxury-strike {
+            position: relative;
+            display: inline-block;
+        }
+        .luxury-strike::after {
+            content: "";
+            position: absolute;
+            left: -2%;
+            top: 55%;
+            width: 104%;
+            height: 6px; /* Más gruesa para impacto */
+            background: #ff9d00;
+            box-shadow: 0 0 35px 6px rgba(255, 157, 0, 1), 0 0 10px 2px rgba(255, 255, 255, 0.4);
+            transform: translateY(-50%) rotate(-0.2deg);
+            border-radius: 99px;
+            z-index: 10;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .grain::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 9999;
+            opacity: 0.02;
+            background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+        }
+
+        .bg-nexora-deep { background-color: #050a14; }
+
+        /* Estilo de botones Pill del Header */
+        .header-pill {
+            padding: 0.75rem 1.75rem;
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 11px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #ffffff;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .header-pill:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(37, 99, 235, 0.5);
+        }
+
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #050a14; }
+        ::-webkit-scrollbar-thumb { background: #2563eb; border-radius: 10px; }
+    </style>
+    <script type="importmap">
+    {
+      "imports": {
+        "react/": "https://esm.sh/react@^19.2.3/",
+        "react": "https://esm.sh/react@^19.2.3",
+        "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+        "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
+        "@google/genai": "https://esm.sh/@google/genai@^1.35.0"
+      }
+    }
+    </script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="grain">
+    <div id="root"></div>
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.05 });
+        const updateObserver = () => {
+            document.querySelectorAll('.reveal:not(.active)').forEach(el => observer.observe(el));
+        };
+        const mo = new MutationObserver(updateObserver);
+        window.addEventListener('DOMContentLoaded', () => {
+            updateObserver();
+            mo.observe(document.body, { childList: true, subtree: true });
+        });
+    </script>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>

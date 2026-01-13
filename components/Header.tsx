@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Globe, DollarSign, ArrowRight, Menu, X, ShieldCheck, CheckCircle2 } from 'lucide-react';
-import { PHONE_NUMBER } from '../constants';
 import { Sidebar } from './Sidebar';
 
 interface HeaderProps {
@@ -10,20 +9,11 @@ interface HeaderProps {
   toggleCurrency: () => void;
   onOpenAdmin: () => void;
   referralCode?: string | null;
+  onContactClick?: () => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ lang, toggleLang, currency, toggleCurrency, onOpenAdmin, referralCode }) => {
+export const Header: React.FC<HeaderProps> = ({ lang, toggleLang, currency, toggleCurrency, onOpenAdmin, referralCode, onContactClick }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const baseMessage = lang === 'ES' 
-    ? "Hola Nexora! Me interesa el paquete Socio Nexora." 
-    : "Hi Nexora! I'm interested in the Socio Nexora pack.";
-  
-  const fullMessage = referralCode 
-    ? `${baseMessage} REF: ${referralCode}` 
-    : baseMessage;
-  
-  const waLink = `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(fullMessage)}`;
 
   return (
     <>
@@ -43,7 +33,6 @@ export const Header: React.FC<HeaderProps> = ({ lang, toggleLang, currency, togg
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               className="flex items-center gap-4 cursor-pointer group"
             >
-              {/* LOGO ORIGINAL RESTAURADO */}
               <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center shadow-[0_0_20px_rgba(37,99,235,0.3)] transition-transform group-hover:scale-110">
                  <span className="text-white font-black text-xl tracking-tighter">N</span>
               </div>
@@ -71,7 +60,6 @@ export const Header: React.FC<HeaderProps> = ({ lang, toggleLang, currency, togg
               <ShieldCheck size={16} />
             </button>
 
-            {/* Currency Toggle with Flash Effect */}
             <button 
               onClick={toggleCurrency}
               className="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-[11px] font-black text-white uppercase tracking-widest hover:bg-white/10 transition-all animate-flash-elite hidden lg:flex"
@@ -80,7 +68,6 @@ export const Header: React.FC<HeaderProps> = ({ lang, toggleLang, currency, togg
               $ {currency}
             </button>
 
-            {/* Language Toggle with Flash Effect */}
             <button 
               onClick={toggleLang}
               className="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-[11px] font-black text-white uppercase tracking-widest hover:bg-white/10 transition-all animate-flash-elite hidden md:flex"
@@ -89,15 +76,13 @@ export const Header: React.FC<HeaderProps> = ({ lang, toggleLang, currency, togg
               {lang}
             </button>
 
-            <a 
-              href={waLink}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button 
+              onClick={onContactClick}
               className="flex items-center gap-3 px-8 py-3.5 bg-blue-600 text-white text-[11px] font-black uppercase tracking-[0.2em] rounded-2xl hover:bg-blue-500 transition-all shadow-xl shadow-blue-600/30 group"
             >
-              {lang === 'ES' ? 'CONTACTO' : 'CONTACT'}
+              {lang === 'ES' ? 'ESTRENAR' : 'LAUNCH'}
               <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-            </a>
+            </button>
           </div>
         </div>
       </header>

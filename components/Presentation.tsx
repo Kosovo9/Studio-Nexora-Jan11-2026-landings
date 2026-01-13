@@ -1,14 +1,15 @@
 import React from 'react';
 import { Smartphone, Zap, Globe, Camera, PenTool, LayoutTemplate, ArrowRight } from 'lucide-react';
-import { PHONE_NUMBER, ORIGINAL_MXN, CURRENCY_MXN, ORIGINAL_USD, CURRENCY_USD } from '../constants';
+import { ORIGINAL_MXN, CURRENCY_MXN, ORIGINAL_USD, CURRENCY_USD } from '../constants';
 
 interface PresentationProps {
   lang: 'ES' | 'EN';
   currency: 'USD' | 'MXN';
   referralCode?: string | null;
+  onReserveClick?: () => void;
 }
 
-export const Presentation: React.FC<PresentationProps> = ({ lang, currency, referralCode }) => {
+export const Presentation: React.FC<PresentationProps> = ({ lang, currency, onReserveClick }) => {
   const original = currency === 'USD' ? `$${ORIGINAL_USD}` : `$${ORIGINAL_MXN}`;
   const promo = currency === 'USD' ? `$${CURRENCY_USD}` : `$${CURRENCY_MXN}`;
 
@@ -21,18 +22,8 @@ export const Presentation: React.FC<PresentationProps> = ({ lang, currency, refe
     { icon: <PenTool size={22} />, text: lang === 'ES' ? 'Copywriting  de  Alto  Valor' : 'High-Value  Copywriting' },
   ];
 
-  const baseMessage = lang === 'ES' 
-    ? "Hola Nexora! Me interesa apartar mi proyecto de Landing Elite." 
-    : "Hi Nexora! I want to reserve my Elite Landing project.";
-  
-  const fullMessage = referralCode 
-    ? `${baseMessage} REF: ${referralCode}` 
-    : baseMessage;
-  
-  const waLink = `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(fullMessage)}`;
-
   return (
-    <section id="presentation" className="py-24 bg-[#050a14] relative overflow-hidden">
+    <section id="presentation" className="py-24 bg-[#050a14] relative overflow-hidden border-t border-white/5">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col lg:flex-row items-center gap-20">
           <div className="flex-1 space-y-10 reveal">
@@ -60,15 +51,13 @@ export const Presentation: React.FC<PresentationProps> = ({ lang, currency, refe
                 <p className="text-blue-500 font-black text-2xl">70%  OFF</p>
                 <p className="text-slate-400 text-sm font-medium uppercase tracking-widest">{lang === 'ES' ? 'Cupos  Limitados' : 'Limited  Spots'}</p>
               </div>
-              <a 
-                href={waLink} 
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-10 py-5 bg-white text-black font-black rounded-xl text-xs uppercase tracking-widest btn-tactile flex items-center gap-3 transition-transform hover:scale-105 active:scale-95"
+              <button 
+                onClick={onReserveClick}
+                className="px-10 py-5 bg-white text-black font-black rounded-xl text-xs uppercase tracking-widest btn-tactile flex items-center gap-3 transition-transform hover:scale-105 active:scale-95 shadow-xl"
               >
                 {lang === 'ES' ? 'Apartar  Proyecto' : 'Reserve  Project'}
                 <ArrowRight size={16} />
-              </a>
+              </button>
             </div>
           </div>
           

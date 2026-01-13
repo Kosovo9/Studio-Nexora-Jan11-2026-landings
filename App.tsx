@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
@@ -20,12 +19,14 @@ import { WorkSamples } from './components/WorkSamples';
 import { AdminPanel } from './components/AdminPanel';
 import { SecurityGuard } from './components/SecurityGuard';
 import { ResponsiveShowcase } from './components/ResponsiveShowcase';
+import { CheckoutModal } from './components/CheckoutModal';
 import { ShieldCheck } from 'lucide-react';
 
 const App: React.FC = () => {
   const [lang, setLang] = useState<'ES' | 'EN'>('ES');
   const [currency, setCurrency] = useState<'USD' | 'MXN'>('MXN');
   const [showAdmin, setShowAdmin] = useState(false);
+  const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const [referralCode, setReferralCode] = useState<string | null>(null);
 
   useEffect(() => {
@@ -56,6 +57,8 @@ const App: React.FC = () => {
     localStorage.setItem('nexora_curr', newCurr);
   };
 
+  const openCheckout = () => setIsCheckoutOpen(true);
+
   if (showAdmin) {
     return <AdminPanel onClose={() => setShowAdmin(false)} lang={lang} />;
   }
@@ -70,6 +73,7 @@ const App: React.FC = () => {
           toggleCurrency={toggleCurrency} 
           onOpenAdmin={() => setShowAdmin(true)}
           referralCode={referralCode}
+          onContactClick={openCheckout}
         />
         
         <main>
@@ -84,14 +88,14 @@ const App: React.FC = () => {
             </div>
           )}
           
-          <Hero lang={lang} currency={currency} />
+          <Hero lang={lang} currency={currency} onLaunchClick={openCheckout} />
           <PriceComparison lang={lang} currency={currency} />
-          <Presentation lang={lang} currency={currency} referralCode={referralCode} />
+          <Presentation lang={lang} currency={currency} referralCode={referralCode} onReserveClick={openCheckout} />
           <Features lang={lang} />
           <Ecosystem lang={lang} />
           <Rewards lang={lang} currency={currency} />
-          <WorkSamples lang={lang} referralCode={referralCode} />
-          <Versatility lang={lang} referralCode={referralCode} />
+          <WorkSamples lang={lang} referralCode={referralCode} onReserveClick={openCheckout} />
+          <Versatility lang={lang} referralCode={referralCode} onLaunchClick={openCheckout} />
           <Portfolio lang={lang} />
           <ResponsiveShowcase lang={lang} />
           <Process lang={lang} />
@@ -103,6 +107,14 @@ const App: React.FC = () => {
 
         <Footer lang={lang} />
         <FloatingWA referralCode={referralCode} />
+
+        <CheckoutModal 
+          isOpen={isCheckoutOpen} 
+          onClose={() => setIsCheckoutOpen(false)} 
+          lang={lang} 
+          currency={currency} 
+          referralCode={referralCode}
+        />
       </div>
     </SecurityGuard>
   );

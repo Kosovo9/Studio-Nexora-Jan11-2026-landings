@@ -1,51 +1,50 @@
 import React, { useEffect, useState } from 'react';
-import { ShieldAlert, ShieldCheck, Lock } from 'lucide-react';
+import { ShieldAlert, Lock } from 'lucide-react';
 
 export const SecurityGuard: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isClone, setIsClone] = useState(false);
   const [showToast, setShowToast] = useState(false);
 
   useEffect(() => {
-    // 1. Anti-Clon: Domain Lock
+    // Nexora Shield: Domain Integrity
     const authorizedPatterns = [
       'localhost', 
       '127.0.0.1',
-      'nexorastudio.com', 
-      'studio-nexora.com', 
       'netlify.app',
-      'vercel.app',
-      'webcontainer.io',
+      'nexorastudio.com',
       'stackblitz.io',
+      'webcontainer.io',
+      'vercel.app',
       'github.dev'
     ];
     
     const currentDomain = window.location.hostname.toLowerCase();
     
-    // Verificación de seguridad de dominio: Permite si el dominio contiene alguna de las palabras clave
-    const isAuthorized = currentDomain === "" || authorizedPatterns.some(pattern => currentDomain.includes(pattern));
+    // Si estamos en producción (no localhost), verificar que el dominio sea autorizado
+    const isLocal = currentDomain === 'localhost' || currentDomain === '127.0.0.1' || currentDomain === '';
+    const isAuthorized = authorizedPatterns.some(pattern => currentDomain.includes(pattern));
     
-    if (!isAuthorized) {
+    if (!isLocal && !isAuthorized) {
       setIsClone(true);
-      console.error("NEXORA SHIELD: UNAUTHORIZED DOMAIN DETECTED ->", currentDomain);
+      console.warn("NEXORA SHIELD: ACCESS DENIED ON DOMAIN ->", currentDomain);
     }
 
-    // 2. Anti-Copy: Disable Shortcuts
+    // Anti-Copy Protocols
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (
-        (e.ctrlKey && (e.key === 'c' || e.key === 'u' || e.key === 's')) ||
-        e.key === 'F12'
-      ) {
-        // Permitimos F12 en desarrollo para debug, pero lo bloqueamos en producción
-        if (!currentDomain.includes('localhost')) {
-            e.preventDefault();
-            triggerShieldAlert();
-        }
+      // Solo activamos restricciones en producción y dominios no autorizados
+      if (!isLocal && isAuthorized) {
+          if (
+            (e.ctrlKey && (e.key === 'c' || e.key === 'u' || e.key === 's')) ||
+            e.key === 'F12'
+          ) {
+              e.preventDefault();
+              triggerShieldAlert();
+          }
       }
     };
 
-    // 3. Anti-Right Click
     const handleContextMenu = (e: MouseEvent) => {
-      if (!currentDomain.includes('localhost')) {
+      if (!isLocal && isAuthorized) {
           e.preventDefault();
           triggerShieldAlert();
       }
@@ -72,9 +71,9 @@ export const SecurityGuard: React.FC<{ children: React.ReactNode }> = ({ childre
           <div className="w-24 h-24 bg-red-600/20 rounded-3xl flex items-center justify-center mx-auto border border-red-600/50 shadow-[0_0_50px_rgba(220,38,38,0.2)]">
             <ShieldAlert size={48} className="text-red-500" />
           </div>
-          <h1 className="text-4xl font-black uppercase tracking-tighter text-white leading-none">Versión no oficial detectada</h1>
+          <h1 className="text-4xl font-black uppercase tracking-tighter text-white leading-none">Versión no oficial</h1>
           <p className="text-slate-400 leading-relaxed font-medium">
-            Este sitio es un clon no autorizado de <strong>Studio Nexora</strong>. Por tu seguridad, accede siempre desde el dominio oficial.
+            Este sitio es un clon no autorizado. Por tu seguridad, accede siempre desde el dominio oficial de <strong>Studio Nexora</strong>.
           </p>
           <div className="pt-4">
             <a href="https://landingnexora.netlify.app" className="inline-block px-10 py-5 bg-blue-600 text-white font-black rounded-2xl uppercase tracking-[0.2em] text-[10px] shadow-xl shadow-blue-600/30 hover:bg-blue-500 transition-all active:scale-95">
@@ -95,7 +94,7 @@ export const SecurityGuard: React.FC<{ children: React.ReactNode }> = ({ childre
             <Lock size={16} className="text-white" />
           </div>
           <span className="text-[10px] font-black text-white uppercase tracking-[0.2em]">
-            Nexora Shield: Contenido Protegido
+            Nexora Shield: Protegido
           </span>
         </div>
       )}

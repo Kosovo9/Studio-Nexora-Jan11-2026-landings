@@ -74,7 +74,6 @@ export const Rewards: React.FC<RewardsProps> = ({ lang, currency }) => {
             {lang === 'ES' ? 'Ecosistema de Crecimiento' : 'Growth Ecosystem'}
           </div>
           
-          {/* TITULAR RECTIFICADO: DOBLE ESPACIO (1.4) Y BALANCEADO AL 30% */}
           <h2 className="text-3xl md:text-[3.2rem] font-black text-white mb-14 uppercase leading-[1.4] tracking-tighter">
             {lang === 'ES' ? 'SÉ NUESTRO' : 'BE OUR'} <br />
             <span className="text-metallic-gold">{lang === 'ES' ? 'SOCIO ELITE' : 'ELITE PARTNER'}</span>
@@ -124,18 +123,6 @@ export const Rewards: React.FC<RewardsProps> = ({ lang, currency }) => {
                   </tbody>
                 </table>
               </div>
-
-              <div className="mt-8 pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <div className="flex items-center gap-2 text-[8px] text-slate-600 font-bold uppercase tracking-[0.2em]">
-                  <ShieldCheck size={10} className="text-blue-900" />
-                  {lang === 'ES' 
-                    ? 'Actualizado: Enero 2026 | Fuente: Clutch.co, Reports 2026' 
-                    : 'Updated: January 2026 | Source: Clutch.co, Reports 2026'}
-                </div>
-                <div className="px-3 py-1 bg-blue-600/10 rounded-full border border-blue-500/10">
-                  <span className="text-[8px] font-black text-blue-400 uppercase tracking-widest">Global Standard Approved</span>
-                </div>
-              </div>
             </div>
 
             {/* Calculadora de Ganancias */}
@@ -148,13 +135,15 @@ export const Rewards: React.FC<RewardsProps> = ({ lang, currency }) => {
               <div className="space-y-10">
                 <div>
                   <div className="flex justify-between mb-4">
-                    <span className="text-slate-400 text-[10px] font-bold uppercase tracking-widest">{lang === 'ES' ? 'Ventas Referidas' : 'Referral Sales'}</span>
+                    <label htmlFor="sales-range" className="text-slate-400 text-[10px] font-bold uppercase tracking-widest">{lang === 'ES' ? 'Ventas Referidas' : 'Referral Sales'}</label>
                     <span className="text-blue-500 font-black text-xl">{salesCount}</span>
                   </div>
                   <input 
+                    id="sales-range"
                     type="range" min="1" max="20" value={salesCount} 
                     onChange={(e) => setSalesCount(parseInt(e.target.value))}
                     className="w-full h-2 bg-white/5 rounded-lg appearance-none cursor-pointer accent-blue-600"
+                    aria-label={lang === 'ES' ? 'Cantidad de ventas referidas' : 'Number of referred sales'}
                   />
                 </div>
 
@@ -204,8 +193,9 @@ export const Rewards: React.FC<RewardsProps> = ({ lang, currency }) => {
                     <h3 className="text-lg font-black text-white uppercase tracking-tight">{lang === 'ES' ? 'Registro de Socio' : 'Partner Registration'}</h3>
                     <form onSubmit={handleRegister} className="space-y-6">
                       <div>
-                        <label className="block text-[9px] text-slate-500 font-bold uppercase tracking-widest mb-3">{lang === 'ES' ? 'Nombre o Alias Público' : 'Public Name or Alias'}</label>
+                        <label htmlFor="partner-name" className="block text-[9px] text-slate-500 font-bold uppercase tracking-widest mb-3">{lang === 'ES' ? 'Nombre o Alias Público' : 'Public Name or Alias'}</label>
                         <input 
+                          id="partner-name"
                           type="text" 
                           value={name}
                           onChange={(e) => setName(e.target.value)}
@@ -252,12 +242,6 @@ export const Rewards: React.FC<RewardsProps> = ({ lang, currency }) => {
                         {linkCopied ? (lang === 'ES' ? 'LINK DE SOCIO COPIADO' : 'PARTNER LINK COPIED') : (lang === 'ES' ? 'COPIAR LINK DE SOCIO' : 'COPY PARTNER LINK')}
                       </button>
                     </div>
-
-                    <p className="text-center text-[9px] text-slate-500 font-medium leading-relaxed uppercase tracking-tight">
-                      {lang === 'ES' 
-                        ? 'Al usar este link, el código se registra automáticamente en el WhatsApp. Tú solo cobras tu 20%.' 
-                        : 'By using this link, the code is automatically registered in WhatsApp. You just collect your 20%.'}
-                    </p>
                   </div>
                 )}
               </div>

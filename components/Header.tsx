@@ -25,6 +25,7 @@ export const Header: React.FC<HeaderProps> = ({ lang, toggleLang, currency, togg
             <button 
               onClick={() => setIsMenuOpen(true)}
               className="w-12 h-12 flex items-center justify-center text-slate-400 hover:text-white transition-colors"
+              aria-label={lang === 'ES' ? 'Abrir menú de navegación' : 'Open navigation menu'}
             >
               <Menu size={28} />
             </button>
@@ -32,6 +33,8 @@ export const Header: React.FC<HeaderProps> = ({ lang, toggleLang, currency, togg
             <div 
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               className="flex items-center gap-4 cursor-pointer group"
+              role="link"
+              aria-label="Ir al inicio"
             >
               <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center shadow-[0_0_20px_rgba(37,99,235,0.3)] transition-transform group-hover:scale-110">
                  <span className="text-white font-black text-xl tracking-tighter">N</span>
@@ -55,6 +58,7 @@ export const Header: React.FC<HeaderProps> = ({ lang, toggleLang, currency, togg
             <button 
               onDoubleClick={onOpenAdmin}
               className="w-10 h-10 flex items-center justify-center text-white/5 hover:text-blue-500/20 transition-colors"
+              aria-label="Acceso administrativo"
               title="Admin Access (Double Click)"
             >
               <ShieldCheck size={16} />
@@ -63,6 +67,7 @@ export const Header: React.FC<HeaderProps> = ({ lang, toggleLang, currency, togg
             <button 
               onClick={toggleCurrency}
               className="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-[11px] font-black text-white uppercase tracking-widest hover:bg-white/10 transition-all animate-flash-elite hidden lg:flex"
+              aria-label={lang === 'ES' ? 'Cambiar moneda' : 'Change currency'}
             >
               <DollarSign size={18} className="text-blue-500" />
               $ {currency}
@@ -71,6 +76,7 @@ export const Header: React.FC<HeaderProps> = ({ lang, toggleLang, currency, togg
             <button 
               onClick={toggleLang}
               className="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-[11px] font-black text-white uppercase tracking-widest hover:bg-white/10 transition-all animate-flash-elite hidden md:flex"
+              aria-label={lang === 'ES' ? 'Cambiar idioma' : 'Change language'}
             >
               <Globe size={18} className="text-blue-500" />
               {lang}

@@ -13,6 +13,7 @@ export const Portfolio: React.FC<PortfolioProps> = ({ lang }) => {
       category: 'ELITE',
       icon: <User size={16} />,
       img: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=800',
+      alt: lang === 'ES' ? 'Diseño de landing page para marca personal' : 'Personal branding landing page design',
       startBW: true
     },
     { 
@@ -21,6 +22,7 @@ export const Portfolio: React.FC<PortfolioProps> = ({ lang }) => {
       category: 'COLLABORATION',
       icon: <Users size={16} />,
       img: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800',
+      alt: lang === 'ES' ? 'Landing page para colaboraciones profesionales' : 'Professional collaboration landing page',
       startBW: false
     },
     { 
@@ -29,6 +31,7 @@ export const Portfolio: React.FC<PortfolioProps> = ({ lang }) => {
       category: 'CORPORATE',
       icon: <Briefcase size={16} />,
       img: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&q=80&w=800',
+      alt: lang === 'ES' ? 'Estructura web corporativa de alto impacto' : 'High impact corporate web structure',
       startBW: true
     },
     { 
@@ -37,6 +40,7 @@ export const Portfolio: React.FC<PortfolioProps> = ({ lang }) => {
       category: 'MARKETING',
       icon: <Crown size={16} />,
       img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800',
+      alt: lang === 'ES' ? 'Diseño orientado a la conversión y ventas' : 'Conversion and sales oriented design',
       startBW: false
     }
   ];
@@ -48,7 +52,6 @@ export const Portfolio: React.FC<PortfolioProps> = ({ lang }) => {
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-500 text-[10px] font-black uppercase tracking-[0.4em] mb-8">
             {lang === 'ES' ? 'Portafolio de Estilos' : 'Style Portfolio'}
           </div>
-          {/* TITULAR RECTIFICADO: DOBLE ESPACIO (1.4) */}
           <h2 id="portfolio-title" className="text-3xl md:text-[3.4rem] font-black text-white mb-8 uppercase leading-[1.4] tracking-tighter">
             {lang === 'ES' ? 'INSPIRACIÓN' : 'ELITE'} <br/>
             <span className="text-metallic-gold">{lang === 'ES' ? 'ELITE' : 'INSPIRATION'}</span>
@@ -65,7 +68,7 @@ export const Portfolio: React.FC<PortfolioProps> = ({ lang }) => {
             <div key={i} className="group relative aspect-[3/4.5] rounded-[3rem] overflow-hidden glass border-white/5 hover:border-blue-500/40 transition-all duration-700 cursor-pointer">
               <img 
                 src={b.img} 
-                alt={`${b.title}`} 
+                alt={b.alt} 
                 loading="lazy"
                 className={`w-full h-full object-cover transition-all duration-1000 ease-out hover:scale-110 
                   ${b.startBW 

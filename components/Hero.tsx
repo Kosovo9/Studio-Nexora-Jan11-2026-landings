@@ -72,7 +72,7 @@ export const Hero: React.FC<HeroProps> = ({ lang, currency, onLaunchClick }) => 
            </button>
         </div>
 
-        {/* ÁREA DE PRECIOS */}
+        {/* ÁREA DE PRECIOS - REDUCIDA 20% */}
         <div className="flex flex-col items-center w-full">
           <div className="reveal mb-8 flex justify-center w-full" style={{ transitionDelay: '700ms' }}>
             <span className="luxury-strike text-slate-500 text-lg md:text-2xl font-black italic tracking-tighter opacity-60 uppercase leading-none block">
@@ -89,16 +89,16 @@ export const Hero: React.FC<HeroProps> = ({ lang, currency, onLaunchClick }) => 
           <div className="reveal w-full flex justify-center items-center" style={{ transitionDelay: '1000ms' }}>
             <div className="flex items-center justify-center">
               <div className="flex items-center overflow-visible mr-6 md:mr-10">
-                <span className="text-metallic-gold font-black text-2xl md:text-5xl opacity-80 -translate-y-8 md:-translate-y-16">$</span>
-                <span className="text-slate-700 font-light text-3xl md:text-6xl ml-1 md:ml-4 -translate-y-6 md:-translate-y-12 italic">/</span>
+                <span className="text-metallic-gold font-black text-xl md:text-4xl opacity-80 -translate-y-6 md:-translate-y-12">$</span>
+                <span className="text-slate-700 font-light text-2xl md:text-5xl ml-1 md:ml-4 -translate-y-5 md:-translate-y-10 italic">/</span>
               </div>
               <div className="flex flex-col items-center">
-                <h2 className="text-metallic-gold font-black !leading-[0.8] text-[5rem] md:text-[9.5rem] tracking-tighter drop-shadow-[0_0_60px_rgba(234,179,8,0.4)]">
+                <h2 className="text-metallic-gold font-black !leading-[0.8] text-[4rem] md:text-[7.6rem] tracking-tighter drop-shadow-[0_0_60px_rgba(234,179,8,0.4)]">
                   {priceMain}.00
                 </h2>
               </div>
-              <div className="flex items-center overflow-visible ml-6 md:md-10">
-                <span className="text-slate-500/30 font-black text-xl md:text-5xl translate-y-6 md:translate-y-12 tracking-tighter uppercase">+{currency}</span>
+              <div className="flex items-center overflow-visible ml-6 md:ml-10">
+                <span className="text-slate-500/30 font-black text-lg md:text-4xl translate-y-5 md:translate-y-10 tracking-tighter uppercase">+{currency}</span>
               </div>
             </div>
           </div>

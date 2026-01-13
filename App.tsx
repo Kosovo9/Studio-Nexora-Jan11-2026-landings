@@ -106,6 +106,8 @@ const App: React.FC = () => {
         </main>
 
         <Footer lang={lang} />
+        
+        {/* SOPORTE DIRECTO WHATSAPP */}
         <FloatingWA referralCode={referralCode} />
 
         <CheckoutModal 

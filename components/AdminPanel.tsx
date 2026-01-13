@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { X, Users, TrendingUp, DollarSign, Plus, Copy, Check, Search, ShieldCheck, Wallet, CheckCircle2, Calendar, Zap, Activity, Globe } from 'lucide-react';
 
@@ -11,7 +10,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onClose, lang }) => {
   const [activeTab, setActiveTab] = useState<'overview' | 'partners' | 'payouts'>('overview');
   const [logs, setLogs] = useState<string[]>([]);
 
-  // Simulación de Logs de Sistema en Vivo
+  // Simulación de Logs de Sistema en Vivo - IA REMOVED
   useEffect(() => {
     const events = [
       "Visitor from Mexico City",
@@ -20,7 +19,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onClose, lang }) => {
       "System Optimization Complete",
       "Dual Identity ES/EN: Synchronized",
       "Nexora Shield: Active",
-      "Gemini AI: Engine Ready",
+      "Security Protocols: Verified",
       "Visitor from Miami, US"
     ];
     
@@ -156,8 +155,6 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ onClose, lang }) => {
             </div>
           </div>
         )}
-
-        {/* Las demás tabs se mantienen similares por consistencia */}
       </div>
     </div>
   );

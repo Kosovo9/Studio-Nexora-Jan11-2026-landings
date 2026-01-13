@@ -15,7 +15,6 @@ import { FAQ } from './components/FAQ';
 import { Footer } from './components/Footer';
 import { FloatingWA } from './components/FloatingWA';
 import { WorkSamples } from './components/WorkSamples';
-import { ChatWidget } from './components/ChatWidget';
 
 const App: React.FC = () => {
   const [lang, setLang] = useState<'ES' | 'EN'>('ES');
@@ -59,7 +58,6 @@ const App: React.FC = () => {
       </main>
       <Footer lang={lang} />
       <FloatingWA />
-      <ChatWidget lang={lang} />
     </div>
   );
 };

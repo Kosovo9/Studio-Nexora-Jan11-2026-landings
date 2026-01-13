@@ -31,11 +31,13 @@ const App: React.FC = () => {
   const [referralCode, setReferralCode] = useState<string | null>(null);
 
   useEffect(() => {
+    // Carga de preferencias
     const savedLang = localStorage.getItem('nexora_lang');
     const savedCurr = localStorage.getItem('nexora_curr');
     if (savedLang) setLang(savedLang as 'ES' | 'EN');
     if (savedCurr) setCurrency(savedCurr as 'USD' | 'MXN');
 
+    // Manejo de referidos
     const params = new URLSearchParams(window.location.search);
     const ref = params.get('ref');
     if (ref) {
@@ -44,6 +46,16 @@ const App: React.FC = () => {
     } else {
       setReferralCode(localStorage.getItem('nexora_active_ref'));
     }
+
+    // Hotkey de Socio: Shift + A para abrir Admin
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.shiftKey && e.key.toLowerCase() === 'a') {
+        setShowAdmin(prev => !prev);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
   const toggleLang = () => {

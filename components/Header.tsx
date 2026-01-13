@@ -57,11 +57,15 @@ export const Header: React.FC<HeaderProps> = ({ lang, toggleLang, currency, togg
           <div className="flex items-center gap-4">
             <button 
               onDoubleClick={onOpenAdmin}
-              className="w-10 h-10 flex items-center justify-center text-white/5 hover:text-blue-500/20 transition-colors"
+              className="w-10 h-10 flex items-center justify-center text-white/5 hover:text-blue-500/40 transition-colors group relative"
               aria-label="Acceso administrativo"
               title="Admin Access (Double Click)"
             >
               <ShieldCheck size={16} />
+              {/* Tooltip ultra-sutil solo en hover para el socio */}
+              <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-[8px] font-black uppercase tracking-widest text-blue-500 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                {lang === 'ES' ? 'Admin Access' : 'Admin Access'}
+              </span>
             </button>
 
             <button 

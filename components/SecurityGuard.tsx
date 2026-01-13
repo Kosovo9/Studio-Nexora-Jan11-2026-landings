@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { ShieldAlert, ShieldCheck, Lock } from 'lucide-react';
 
@@ -8,24 +7,22 @@ export const SecurityGuard: React.FC<{ children: React.ReactNode }> = ({ childre
 
   useEffect(() => {
     // 1. Anti-Clon: Domain Lock
-    const authorizedDomains = [
+    const authorizedPatterns = [
       'localhost', 
       '127.0.0.1',
       'nexorastudio.com', 
       'studio-nexora.com', 
-      'www.studio-nexora.com',
-      'socionexora.netlify.app',
-      'webcontainer.io', 
-      'stackblitz.io',
-      'stackblitz.com',
       'netlify.app',
-      'vercel.app'
+      'vercel.app',
+      'webcontainer.io',
+      'stackblitz.io',
+      'github.dev'
     ];
     
     const currentDomain = window.location.hostname.toLowerCase();
     
-    // Verificación de seguridad de dominio
-    const isAuthorized = currentDomain === "" || authorizedDomains.some(d => currentDomain.includes(d));
+    // Verificación de seguridad de dominio: Permite si el dominio contiene alguna de las palabras clave
+    const isAuthorized = currentDomain === "" || authorizedPatterns.some(pattern => currentDomain.includes(pattern));
     
     if (!isAuthorized) {
       setIsClone(true);
@@ -35,18 +32,23 @@ export const SecurityGuard: React.FC<{ children: React.ReactNode }> = ({ childre
     // 2. Anti-Copy: Disable Shortcuts
     const handleKeyDown = (e: KeyboardEvent) => {
       if (
-        (e.ctrlKey && (e.key === 'c' || e.key === 'u' || e.key === 's' || e.key === 'i' || e.key === 'j')) ||
+        (e.ctrlKey && (e.key === 'c' || e.key === 'u' || e.key === 's')) ||
         e.key === 'F12'
       ) {
-        e.preventDefault();
-        triggerShieldAlert();
+        // Permitimos F12 en desarrollo para debug, pero lo bloqueamos en producción
+        if (!currentDomain.includes('localhost')) {
+            e.preventDefault();
+            triggerShieldAlert();
+        }
       }
     };
 
     // 3. Anti-Right Click
     const handleContextMenu = (e: MouseEvent) => {
-      e.preventDefault();
-      triggerShieldAlert();
+      if (!currentDomain.includes('localhost')) {
+          e.preventDefault();
+          triggerShieldAlert();
+      }
     };
 
     window.addEventListener('keydown', handleKeyDown);
@@ -66,7 +68,7 @@ export const SecurityGuard: React.FC<{ children: React.ReactNode }> = ({ childre
   if (isClone) {
     return (
       <div className="fixed inset-0 z-[9999] bg-[#030711] flex items-center justify-center p-8 text-center">
-        <div className="max-w-md space-y-8 animate-in fade-in zoom-in duration-500">
+        <div className="max-w-md space-y-8">
           <div className="w-24 h-24 bg-red-600/20 rounded-3xl flex items-center justify-center mx-auto border border-red-600/50 shadow-[0_0_50px_rgba(220,38,38,0.2)]">
             <ShieldAlert size={48} className="text-red-500" />
           </div>
@@ -75,7 +77,7 @@ export const SecurityGuard: React.FC<{ children: React.ReactNode }> = ({ childre
             Este sitio es un clon no autorizado de <strong>Studio Nexora</strong>. Por tu seguridad, accede siempre desde el dominio oficial.
           </p>
           <div className="pt-4">
-            <a href="https://www.studio-nexora.com" className="inline-block px-10 py-5 bg-blue-600 text-white font-black rounded-2xl uppercase tracking-[0.2em] text-[10px] shadow-xl shadow-blue-600/30 hover:bg-blue-500 transition-all active:scale-95">
+            <a href="https://landingnexora.netlify.app" className="inline-block px-10 py-5 bg-blue-600 text-white font-black rounded-2xl uppercase tracking-[0.2em] text-[10px] shadow-xl shadow-blue-600/30 hover:bg-blue-500 transition-all active:scale-95">
               Ir al sitio oficial
             </a>
           </div>

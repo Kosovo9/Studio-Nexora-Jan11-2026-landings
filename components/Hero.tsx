@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Zap, Lightbulb, MessageSquare } from 'lucide-react';
 
@@ -47,14 +48,14 @@ export const Hero: React.FC<HeroProps> = ({ lang, currency }) => {
           </div>
         </div>
 
-        {/* TITULAR MONOLITO */}
-        <div className="monolith-text mb-12 w-full">
-          <span className="text-white-pure reveal" style={{ transitionDelay: '300ms' }}>
+        {/* TITULAR MONOLITO EN DOS RENGLONES */}
+        <div className="monolith-text mb-12 w-full flex flex-col items-center space-y-2">
+          <div className="text-white reveal" style={{ transitionDelay: '300ms' }}>
             {lang === 'ES' ? 'ESTRENA TU' : 'LAUNCH YOUR'}
-          </span>
-          <span className="text-metallic-gold reveal" style={{ transitionDelay: '500ms' }}>
+          </div>
+          <div className="text-metallic-gold reveal" style={{ transitionDelay: '500ms' }}>
             {lang === 'ES' ? 'LANDING ELITE' : 'ELITE LANDING'}
-          </span>
+          </div>
         </div>
 
         {/* ÁREA DE PRECIOS */}
@@ -86,13 +87,13 @@ export const Hero: React.FC<HeroProps> = ({ lang, currency }) => {
                   {priceMain}.00
                 </h2>
               </div>
-              <div className="flex items-center overflow-visible ml-4 md:ml-10">
+              <div className="flex items-center overflow-visible ml-4 md:mr-10">
                 <span className="text-slate-500/30 font-black text-xl md:text-5xl translate-y-4 md:translate-y-8 tracking-tighter uppercase">+{currency}</span>
               </div>
             </div>
           </div>
 
-          {/* BADGE BILINGÜE - 25% MÁS GRANDE */}
+          {/* BADGE BILINGÜE */}
           <div className="mt-10 reveal flex flex-col items-center gap-4" style={{ transitionDelay: '1100ms' }}>
              <div className="flex items-center gap-4 px-8 py-3.5 bg-white/[0.03] border border-white/10 rounded-2xl backdrop-blur-sm animate-flash-elite">
                 <MessageSquare size={18} className="text-blue-500" />

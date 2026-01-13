@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
@@ -26,8 +27,6 @@ const App: React.FC = () => {
   const [currency, setCurrency] = useState<'USD' | 'MXN'>('MXN');
   const [showAdmin, setShowAdmin] = useState(false);
   const [referralCode, setReferralCode] = useState<string | null>(null);
-
-  const PARTNER_PROGRAM_ACTIVE = true;
 
   useEffect(() => {
     const savedLang = localStorage.getItem('nexora_lang');
@@ -63,50 +62,46 @@ const App: React.FC = () => {
 
   return (
     <SecurityGuard>
-      <div className="min-h-screen selection:bg-blue-500/30">
+      <div className="min-h-screen bg-[#030711]">
         <Header 
           lang={lang} 
           toggleLang={toggleLang} 
           currency={currency} 
           toggleCurrency={toggleCurrency} 
           onOpenAdmin={() => setShowAdmin(true)}
-          referralCode={PARTNER_PROGRAM_ACTIVE ? referralCode : null}
+          referralCode={referralCode}
         />
+        
         <main>
-          {PARTNER_PROGRAM_ACTIVE && referralCode && (
+          {referralCode && (
             <div className="fixed top-24 left-0 right-0 z-[90] flex justify-center px-4 pointer-events-none">
-               <div className="bg-blue-600/20 backdrop-blur-xl border border-blue-500/30 px-6 py-2 rounded-full shadow-[0_0_30px_rgba(37,99,235,0.2)] animate-in slide-in-from-top-4 flex items-center gap-3">
-                  <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse shadow-[0_0_8px_#3b82f6]"></div>
+               <div className="bg-blue-600/20 backdrop-blur-xl border border-blue-500/30 px-6 py-2 rounded-full shadow-lg flex items-center gap-3">
                   <ShieldCheck size={12} className="text-blue-500" />
-                  <span className="text-[9px] font-black text-white uppercase tracking-[0.25em]">
-                    {lang === 'ES' ? `Socio Activo: ${referralCode}` : `Active Partner: ${referralCode}`}
+                  <span className="text-[9px] font-black text-white uppercase tracking-widest">
+                    {lang === 'ES' ? `Socio: ${referralCode}` : `Partner: ${referralCode}`}
                   </span>
                </div>
             </div>
           )}
+          
           <Hero lang={lang} currency={currency} />
           <PriceComparison lang={lang} currency={currency} />
           <Presentation lang={lang} currency={currency} referralCode={referralCode} />
           <Features lang={lang} />
           <Ecosystem lang={lang} />
-          
-          {PARTNER_PROGRAM_ACTIVE && <Rewards lang={lang} currency={currency} />}
-          
+          <Rewards lang={lang} currency={currency} />
           <WorkSamples lang={lang} referralCode={referralCode} />
           <Versatility lang={lang} referralCode={referralCode} />
           <Portfolio lang={lang} />
-          
           <ResponsiveShowcase lang={lang} />
-          
           <Process lang={lang} />
           <UrgentService lang={lang} currency={currency} />
           <PaymentFlow lang={lang} />
           <Testimonials lang={lang} />
           <FAQ lang={lang} />
         </main>
-        <footer id="footer">
-          <Footer lang={lang} />
-        </footer>
+
+        <Footer lang={lang} />
         <FloatingWA referralCode={referralCode} />
       </div>
     </SecurityGuard>

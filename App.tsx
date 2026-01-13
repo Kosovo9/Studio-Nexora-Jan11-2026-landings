@@ -7,6 +7,7 @@ import { Features } from './components/Features';
 import { Ecosystem } from './components/Ecosystem';
 import { Rewards } from './components/Rewards';
 import { Portfolio } from './components/Portfolio';
+import { Versatility } from './components/Versatility';
 import { Process } from './components/Process';
 import { UrgentService } from './components/UrgentService';
 import { PaymentFlow } from './components/PaymentFlow';
@@ -17,7 +18,7 @@ import { FloatingWA } from './components/FloatingWA';
 import { WorkSamples } from './components/WorkSamples';
 import { AdminPanel } from './components/AdminPanel';
 import { SecurityGuard } from './components/SecurityGuard';
-import { ChatWidget } from './components/ChatWidget';
+import { ResponsiveShowcase } from './components/ResponsiveShowcase';
 import { ShieldCheck } from 'lucide-react';
 
 const App: React.FC = () => {
@@ -92,7 +93,11 @@ const App: React.FC = () => {
           {PARTNER_PROGRAM_ACTIVE && <Rewards lang={lang} currency={currency} />}
           
           <WorkSamples lang={lang} referralCode={referralCode} />
+          <Versatility lang={lang} referralCode={referralCode} />
           <Portfolio lang={lang} />
+          
+          <ResponsiveShowcase lang={lang} />
+          
           <Process lang={lang} />
           <UrgentService lang={lang} currency={currency} />
           <PaymentFlow lang={lang} />
@@ -103,7 +108,6 @@ const App: React.FC = () => {
           <Footer lang={lang} />
         </footer>
         <FloatingWA referralCode={referralCode} />
-        <ChatWidget lang={lang} />
       </div>
     </SecurityGuard>
   );

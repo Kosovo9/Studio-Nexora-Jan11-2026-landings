@@ -3,21 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>STUDIO NEXORA | Elite Digital Identities</title>
+    <title>STUDIO NEXORA | Elite Digital Identities & 24h Landing Pages</title>
     
-    <!-- SEO Elite Pack -->
-    <meta name="description" content="Artesanía digital para visionarios. Landing Pages de alto impacto con entrega en 24h. Tecnología Dual Identity ES/EN. Sin compromiso inicial.">
-    <meta name="keywords" content="nexora studio, elite design, landing page 24h, experto gemini, desarrollo web profesional, branding de lujo">
+    <!-- SEO Elite Pack Optimized -->
+    <meta name="description" content="Socio Nexora: Ingeniería digital de alto impacto. Landings Elite con entrega en 24h, tecnología dual-language y arquitectura ultra-fluida. Estrena hoy sin anticipo.">
+    <meta name="keywords" content="nexora studio, socio nexora, elite landing page, diseño web de lujo, desarrollo web 24h, branding digital, expertos gemini ai">
     <meta name="author" content="Nexora Build Director">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://www.studio-nexora.com" />
     
-    <!-- Open Graph / Facebook -->
+    <!-- Open Graph / Social Mastery -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.studio-nexora.com/">
     <meta property="og:title" content="STUDIO NEXORA | Elite Digital Identities">
-    <meta property="og:description" content="Diseño web de alta gama para líderes y visionarios. Estrena en 24h sin anticipo inicial.">
+    <meta property="og:description" content="Artesanía digital para visionarios. Estrena tu Landing Elite en 24h con el respaldo de Studio Nexora.">
     <meta property="og:image" content="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200">
+
+    <!-- Schema.org JSON-LD (SEO Power Up) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Product",
+      "name": "Landing Elite Socio Nexora",
+      "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200",
+      "description": "Desarrollo de landing page premium con entrega en 24 horas y soporte bilingüe.",
+      "brand": {
+        "@type": "Brand",
+        "name": "Studio Nexora"
+      },
+      "offers": {
+        "@type": "AggregateOffer",
+        "priceCurrency": "MXN",
+        "lowPrice": "2999",
+        "highPrice": "9000"
+      }
+    }
+    </script>
 
     <meta name="theme-color" content="#030711">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -174,26 +195,6 @@
             background-image: url("https://grainy-gradients.vercel.app/noise.svg");
         }
 
-        .header-pill {
-            padding: 0.75rem 2.05rem; 
-            border-radius: 9999px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            font-size: 14.5px; 
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: #ffffff;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem; 
-        }
-        .header-pill:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(37, 99, 235, 0.4);
-        }
-
         ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-track { background: #030711; }
         ::-webkit-scrollbar-thumb { background: #2563eb; border-radius: 10px; }
@@ -212,6 +213,7 @@
 </head>
 <body class="grain">
     <div id="root"></div>
+    <script type="module" src="./index.tsx"></script>
     <script>
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {

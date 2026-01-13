@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Zap, Lightbulb, MessageSquare } from 'lucide-react';
 
@@ -84,7 +83,7 @@ export const Hero: React.FC<HeroProps> = ({ lang, currency }) => {
               </div>
               <div className="flex flex-col items-center">
                 <h2 className="text-metallic-gold font-black !leading-[0.85] text-[5.5rem] md:text-[11.5rem] tracking-tighter drop-shadow-[0_0_60px_rgba(234,179,8,0.4)]">
-                  {priceMain}<span className="text-[2.5rem] md:text-[6rem] opacity-60">.00</span>
+                  {priceMain}.00
                 </h2>
               </div>
               <div className="flex items-center overflow-visible ml-4 md:ml-10">

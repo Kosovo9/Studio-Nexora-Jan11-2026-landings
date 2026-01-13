@@ -34,13 +34,13 @@ export const PriceComparison: React.FC<PriceComparisonProps> = ({ lang, currency
     <section id="pricing" className="py-24 bg-[#030711] relative overflow-hidden border-t border-white/5">
       <div className="max-w-[1200px] mx-auto px-6">
         
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8 reveal">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-32 gap-8 reveal">
            <div className="max-w-xl">
-              <h2 className="text-white font-black text-xs uppercase tracking-[0.5em] mb-4 flex items-center gap-3">
+              <h2 className="text-white font-black text-xs uppercase tracking-[0.5em] mb-8 flex items-center gap-3">
                 <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></div>
                 {lang === 'ES' ? 'ANÁLISIS DE MERCADO 2026' : '2026 MARKET ANALYSIS'}
               </h2>
-              <p className="text-3xl md:text-5xl font-black text-white uppercase leading-none tracking-tighter">
+              <p className="text-3xl md:text-5xl font-black text-white uppercase leading-[3] tracking-tighter">
                 {lang === 'ES' ? 'VALOR REAL DE TU' : 'REAL VALUE OF YOUR'} <br/>
                 <span className="text-blue-500">{lang === 'ES' ? 'INGENIERÍA' : 'ENGINEERING'}</span>
               </p>

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Smartphone, Zap, Globe, Camera, PenTool, LayoutTemplate, ArrowRight } from 'lucide-react';
 import { PHONE_NUMBER, ORIGINAL_MXN, CURRENCY_MXN, ORIGINAL_USD, CURRENCY_USD } from '../constants';
@@ -40,9 +39,11 @@ export const Presentation: React.FC<PresentationProps> = ({ lang, currency, refe
             <div className="inline-block px-4 py-1.5 rounded-full bg-blue-500/10 text-blue-400 text-xs font-bold tracking-[0.3em] border border-blue-500/20 uppercase">
               {lang === 'ES' ? 'Anatomía  de  tu  Éxito' : 'Anatomy  of  your  Success'}
             </div>
-            <h2 className="text-4xl md:text-6xl font-bold text-white leading-tight">
+            <h2 className="text-4xl md:text-6xl font-bold text-white leading-[2.5]">
               {lang === 'ES' ? `Ingeniería  de  ${original}` : `${original}  Engineering`} <br />
-              <span className="text-blue-500">{lang === 'ES' ? `por  solo  ${promo}.` : `for  only  ${promo}.`}</span>
+              <span className="text-blue-500">
+                {lang === 'ES' ? `por  solo  ${promo}.00` : `for  only  ${promo}.00`}
+              </span>
             </h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -95,4 +96,4 @@ export const Presentation: React.FC<PresentationProps> = ({ lang, currency, refe
       </div>
     </section>
   );
-};
+}

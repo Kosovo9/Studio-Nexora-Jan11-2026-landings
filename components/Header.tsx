@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Globe, DollarSign, ArrowRight, Menu, X, ShieldCheck, CheckCircle2 } from 'lucide-react';
 import { PHONE_NUMBER } from '../constants';
@@ -72,20 +71,24 @@ export const Header: React.FC<HeaderProps> = ({ lang, toggleLang, currency, togg
               <ShieldCheck size={16} />
             </button>
 
+            {/* Currency Toggle with Flash Effect */}
             <button 
               onClick={toggleCurrency}
-              className="header-pill hidden lg:flex"
+              className="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-[11px] font-black text-white uppercase tracking-widest hover:bg-white/10 transition-all animate-flash-elite hidden lg:flex"
             >
-              <DollarSign size={20} className="text-blue-500" />
+              <DollarSign size={18} className="text-blue-500" />
               $ {currency}
             </button>
+
+            {/* Language Toggle with Flash Effect */}
             <button 
               onClick={toggleLang}
-              className="header-pill hidden md:flex"
+              className="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-[11px] font-black text-white uppercase tracking-widest hover:bg-white/10 transition-all animate-flash-elite hidden md:flex"
             >
-              <Globe size={20} className="text-blue-500" />
+              <Globe size={18} className="text-blue-500" />
               {lang}
             </button>
+
             <a 
               href={waLink}
               target="_blank"

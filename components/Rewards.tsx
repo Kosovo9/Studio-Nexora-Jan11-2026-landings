@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Gift, Users, Copy, Check, Ticket, Award, Sparkles, Link as LinkIcon, ChevronRight, Calculator, DollarSign, Globe2, ShieldCheck } from 'lucide-react';
 import { CURRENCY_MXN, CURRENCY_USD } from '../constants';
@@ -74,7 +73,7 @@ export const Rewards: React.FC<RewardsProps> = ({ lang, currency }) => {
             <Award size={14} />
             {lang === 'ES' ? 'Ecosistema de Crecimiento' : 'Growth Ecosystem'}
           </div>
-          <h2 className="text-huge text-white mb-6 uppercase">
+          <h2 className="text-huge text-white mb-6 uppercase leading-[2.5]">
             {lang === 'ES' ? 'SÉ NUESTRO' : 'BE OUR'} <br />
             <span className="text-metallic-gold">{lang === 'ES' ? 'SOCIO ELITE' : 'ELITE PARTNER'}</span>
           </h2>

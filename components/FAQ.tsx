@@ -8,28 +8,20 @@ interface FAQProps {
 export const FAQ: React.FC<FAQProps> = ({ lang }) => {
   const faqs = [
     {
-      q: lang === 'ES' ? '¿Cuánto tarda en estar lista mi Landing Page?' : 'How long does it take for my Landing Page to be ready?',
-      a: lang === 'ES'
-        ? 'Garantizamos la entrega de tu primera versión funcional en menos de 24 horas hábiles tras recibir tu información.'
-        : 'We guarantee the delivery of your first functional version in less than 24 business hours after receiving your information.'
-    },
-    {
-      q: lang === 'ES' ? '¿Tengo que pagar un anticipo?' : 'Do I have to pay an advance?',
-      a: lang === 'ES'
-        ? 'No. En Studio Nexora confiamos tanto en nuestra calidad que no pedimos anticipo. Pagas solo si te encanta el resultado final.'
-        : 'No. At Studio Nexora we trust our quality so much that we do not ask for an advance. You only pay if you love the final result.'
-    },
-    {
       q: lang === 'ES' ? '¿Qué necesito para empezar?' : 'What do I need to start?',
-      a: lang === 'ES'
-        ? 'Solo WhatsApp. Necesitaremos información sobre lo que buscas en tu landing page: teléfono, WhatsApp, correo, colores de marca e información básica.'
-        : 'Just WhatsApp. We will need information about what you want on your landing page: phone, WhatsApp, email, brand colors, and basic info.'
+      a: lang === 'ES' 
+        ? 'Solo WhatsApp. Necesitaremos información sobre lo que buscas en tu landing page: teléfono, WhatsApp, correo, ¿Inglés/Español?, colores, sitio web, información personal y/o de empresa y fotos al respecto.' 
+        : 'Just WhatsApp. We will need information about what you want on your landing page: phone, WhatsApp, email, English/Spanish?, colors, website, personal and/or company info, and relevant photos.'
     },
     {
-      q: lang === 'ES' ? '¿Qué medios de pago aceptan?' : 'What payment methods do you accept?',
-      a: lang === 'ES'
-        ? 'Aceptamos transferencia bancaria (SPEI), Mercado Pago y PayPal. Emitimos factura si lo requieres.'
-        : 'We accept bank transfers, Mercado Pago, and PayPal. We can issue an invoice if required.'
+      q: lang === 'ES' ? '¿Cómo realizo el pago?' : 'How do I pay?',
+      a: lang === 'ES' 
+        ? 'Aceptamos transferencia bancaria, Mercado Pago o PayPal. El primer pago se hace solo después de que apruebes el diseño inicial.' 
+        : 'We accept bank transfers, Mercado Pago, or PayPal. The first payment is made only after you approve the initial design.'
+    },
+    {
+      q: lang === 'ES' ? '¿Qué pasa si no me gusta el diseño?' : 'What if I don\'t like the design?',
+      a: lang === 'ES' ? 'No se publica y no pagas nada. Sin compromisos ni cargos ocultos.' : 'It stays unpublished and you pay nothing. No commitments or hidden fees.'
     },
     {
       q: lang === 'ES' ? '¿Puedo usar mi propio dominio?' : 'Can I use my own domain?',
@@ -44,7 +36,7 @@ export const FAQ: React.FC<FAQProps> = ({ lang }) => {
           <div className="text-blue-500 font-black text-[10px] uppercase tracking-[0.5em] mb-8">Support Center</div>
           {/* TITULAR RECTIFICADO: DOBLE ESPACIO (1.4) */}
           <h2 className="text-3xl md:text-[3.4rem] font-black text-white uppercase leading-[1.4] tracking-tighter">
-            {lang === 'ES' ? 'PREGUNTAS' : 'COMMON'} <br />
+            {lang === 'ES' ? 'PREGUNTAS' : 'COMMON'} <br/>
             <span className="text-metallic-gold">{lang === 'ES' ? 'FRECUENTES' : 'QUESTIONS'}</span>
           </h2>
         </div>
@@ -64,7 +56,7 @@ const FAQItem: React.FC<{ question: string, answer: string }> = ({ question, ans
 
   return (
     <div className={`glass rounded-[2rem] overflow-hidden border transition-all duration-500 ${isOpen ? 'border-blue-500/40 bg-blue-600/5' : 'border-white/5'}`}>
-      <button
+      <button 
         onClick={() => setIsOpen(!isOpen)}
         className="w-full p-8 flex items-center justify-between text-left hover:bg-white/[0.02] transition-colors"
       >

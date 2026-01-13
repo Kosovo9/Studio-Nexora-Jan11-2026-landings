@@ -1,32 +1,48 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>STUDIO NEXORA | Socio Nexora - Landing Pages de Lujo en 24h</title>
-
+    <title>STUDIO NEXORA | Elite Digital Identities</title>
+    
     <!-- SEO Elite Pack -->
-    <meta name="description"
-        content="Desarrollo de Landing Pages nivel Socio Nexora. Entrega garantizada en menos de 24 horas. Diseño premium, responsive y orientado a resultados. Pagas solo si te encanta.">
-    <meta name="keywords"
-        content="nexora studio, socio nexora, landing page de lujo, diseño web elite, experto gemini, desarrollo web 24h, portfolio premium mxn usd">
+    <meta name="description" content="Artesanía digital para visionarios. Landing Pages de alto impacto con entrega en 24h. Tecnología Dual Identity ES/EN. Sin compromiso inicial.">
+    <meta name="keywords" content="nexora studio, elite design, landing page 24h, experto gemini, desarrollo web profesional, branding de lujo">
     <meta name="author" content="Nexora Build Director">
-    <meta name="robots" content="index, follow, max-image-preview:large">
-    <link rel="canonical" href="https://nexorastudio.com" />
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.studio-nexora.com" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.studio-nexora.com/">
+    <meta property="og:title" content="STUDIO NEXORA | Elite Digital Identities">
+    <meta property="og:description" content="Diseño web de alta gama para líderes y visionarios. Estrena en 24h sin anticipo inicial.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200">
 
-    <meta name="theme-color" content="#050a14">
+    <meta name="theme-color" content="#030711">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --nexora-navy: #050a14;
-            --nexora-gold: #fef08a;
-            /* Color superior del degradado */
-            --nexora-gold-deep: #eab308;
-            /* Color inferior del degradado */
+            --nexora-navy: #030711;
+            --nexora-gold-top: #fefce8;
+            --nexora-gold-bottom: #eab308;
+            --nexora-orange: #f59e0b;
+        }
+        
+        /* NEXORA SHIELD: Anti-Copy & Anti-Selection */
+        * {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        input, textarea {
+            user-select: text !important;
+            -webkit-user-select: text !important;
         }
 
         body {
@@ -36,110 +52,151 @@
             scroll-behavior: smooth;
             -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
+            margin: 0;
         }
 
-        /* TIPOGRAFIA GIGANTE MONOLITICA - REPLICA EXACTA */
-        .text-huge {
-            font-size: clamp(1.5rem, 6vw, 5rem);
-            line-height: 0.9;
-            letter-spacing: -0.02em;
-            word-spacing: 0.15em;
-            font-weight: 950;
+        section[id] {
+            scroll-margin-top: 100px;
+        }
+        
+        .monolith-text {
+            font-size: clamp(2rem, 7vw, 6.5rem);
+            line-height: 0.95; 
+            letter-spacing: -0.01em; 
+            font-weight: 900;
             text-transform: uppercase;
-            display: block;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            white-space: pre-wrap;
         }
 
+        .text-huge {
+            font-size: clamp(1.8rem, 6vw, 4rem);
+            line-height: 1;
+            font-weight: 900;
+            white-space: pre-wrap;
+        }
+
+        .text-white-pure { color: #ffffff; }
+        
         .text-metallic-gold {
-            background: linear-gradient(180deg, #fef08a 0%, #eab308 100%);
+            background: linear-gradient(180deg, var(--nexora-gold-top) 0%, var(--nexora-gold-bottom) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            /* Brillo suave alrededor del texto dorado como en la imagen */
-            filter: drop-shadow(0 0 40px rgba(234, 179, 8, 0.5));
-        }
-
-        /* TACHADO NEÓN NARANJA VIBRANTE */
-        .luxury-strike {
+            filter: drop-shadow(0 0 20px rgba(234, 179, 8, 0.3));
             position: relative;
             display: inline-block;
         }
 
+        .text-metallic-gold::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(
+                90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.4), 
+                transparent
+            );
+            transform: skewX(-25deg);
+            animation: glint 4s infinite;
+        }
+
+        @keyframes glint {
+            0% { left: -150%; }
+            30% { left: 150%; }
+            100% { left: 150%; }
+        }
+
+        .luxury-strike {
+            position: relative;
+            display: inline-block;
+        }
         .luxury-strike::after {
             content: "";
             position: absolute;
-            left: -2%;
-            top: 55%;
-            width: 104%;
-            height: 6px;
-            /* Más gruesa para impacto */
-            background: #ff9d00;
-            box-shadow: 0 0 35px 6px rgba(255, 157, 0, 1), 0 0 10px 2px rgba(255, 255, 255, 0.4);
-            transform: translateY(-50%) rotate(-0.2deg);
+            left: 50%;
+            top: 50%;
+            width: 50%; 
+            height: 6px; 
+            background: var(--nexora-orange);
+            box-shadow: 0 0 20px 8px rgba(245, 158, 11, 0.6), 0 0 5px 2px rgba(255, 255, 255, 0.5);
+            transform: translate(-50%, -50%) rotate(-7deg); 
             border-radius: 99px;
             z-index: 10;
+            pointer-events: none;
+            animation: strike-pulse 1.5s infinite alternate ease-in-out;
+        }
+
+        @keyframes strike-pulse {
+            from { opacity: 0.7; transform: translate(-50%, -50%) rotate(-7deg) scaleX(1); }
+            to { opacity: 1; transform: translate(-50%, -50%) rotate(-7deg) scaleX(1.1); }
         }
 
         .reveal {
             opacity: 0;
-            transform: translateY(10px);
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(30px) scale(0.95);
+            filter: blur(10px);
+            transition: all 1s cubic-bezier(0.19, 1, 0.22, 1);
         }
-
         .reveal.active {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
+            filter: blur(0);
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        @keyframes flash-elite {
+            0%, 100% { opacity: 1; box-shadow: 0 0 15px rgba(37, 99, 235, 0.2); border-color: rgba(37, 99, 235, 0.3); }
+            50% { opacity: 0.6; box-shadow: 0 0 5px rgba(37, 99, 235, 0.1); border-color: rgba(37, 99, 235, 0.1); }
+        }
+        .animate-flash-elite {
+            animation: flash-elite 2s infinite ease-in-out;
         }
 
         .grain::before {
             content: "";
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 9999;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 9999;
             opacity: 0.02;
             background-image: url("https://grainy-gradients.vercel.app/noise.svg");
         }
 
-        .bg-nexora-deep {
-            background-color: #050a14;
-        }
-
-        /* Estilo de botones Pill del Header */
         .header-pill {
-            padding: 0.75rem 1.75rem;
+            padding: 0.75rem 2.05rem; 
             border-radius: 9999px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 11px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            font-size: 14.5px; 
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: 0.15em;
             color: #ffffff;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.75rem; 
         }
-
         .header-pill:hover {
             background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(37, 99, 235, 0.5);
+            border-color: rgba(37, 99, 235, 0.4);
         }
 
-        ::-webkit-scrollbar {
-            width: 4px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #050a14;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #2563eb;
-            border-radius: 10px;
-        }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #030711; }
+        ::-webkit-scrollbar-thumb { background: #2563eb; border-radius: 10px; }
     </style>
     <script type="importmap">
     {
@@ -152,9 +209,7 @@
       }
     }
     </script>
-    <link rel="stylesheet" href="/index.css">
 </head>
-
 <body class="grain">
     <div id="root"></div>
     <script>
@@ -162,7 +217,7 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) entry.target.classList.add('active');
             });
-        }, { threshold: 0.05 });
+        }, { threshold: 0.01 });
         const updateObserver = () => {
             document.querySelectorAll('.reveal:not(.active)').forEach(el => observer.observe(el));
         };
@@ -172,7 +227,5 @@
             mo.observe(document.body, { childList: true, subtree: true });
         });
     </script>
-    <script type="module" src="/index.tsx"></script>
 </body>
-
 </html>

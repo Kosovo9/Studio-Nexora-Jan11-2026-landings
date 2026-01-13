@@ -1,11 +1,23 @@
 
 import React from 'react';
-import { WHATSAPP_LINK } from '../constants';
+import { PHONE_NUMBER } from '../constants';
 
-export const FloatingWA: React.FC = () => {
+interface FloatingWAProps {
+  referralCode?: string | null;
+}
+
+export const FloatingWA: React.FC<FloatingWAProps> = ({ referralCode }) => {
+  // Simplificado para disparar el bot de respuesta automática del socio
+  const baseMessage = "WEB";
+  const fullMessage = referralCode 
+    ? `${baseMessage}. Hola Nexora! Mi código de socio es REF: ${referralCode}` 
+    : baseMessage;
+  
+  const waLink = `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(fullMessage)}`;
+
   return (
     <a 
-      href={WHATSAPP_LINK}
+      href={waLink}
       target="_blank"
       rel="noopener noreferrer"
       className="fixed bottom-6 right-6 z-[999] w-16 h-16 bg-[#25D366] hover:bg-[#20ba59] text-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 active:scale-95 transition-all animate-bounce"

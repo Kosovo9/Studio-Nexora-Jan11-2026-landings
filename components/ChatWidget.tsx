@@ -1,6 +1,6 @@
 
 import React, { useState, useRef, useEffect } from 'react';
-import { MessageSquare, Send, X, Loader2, Sparkles } from 'lucide-react';
+import { MessageSquare, Send, X, Loader2, Sparkles, ShieldCheck } from 'lucide-react';
 import { GoogleGenAI } from "@google/genai";
 import { CURRENCY_MXN, CURRENCY_USD, ORIGINAL_MXN, ORIGINAL_USD } from '../constants';
 
@@ -18,6 +18,7 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ lang }) => {
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [lastMessageTime, setLastMessageTime] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -28,6 +29,13 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ lang }) => {
 
   const handleSend = async () => {
     if (!input.trim() || isLoading) return;
+
+    // NEXORA ANTI-SPAM: Mínimo 2 segundos entre mensajes
+    const now = Date.now();
+    if (now - lastMessageTime < 2000) {
+      return;
+    }
+    setLastMessageTime(now);
 
     const userMessage = input.trim();
     setInput('');
@@ -66,8 +74,8 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ lang }) => {
         <div className="mb-4 w-[320px] sm:w-[400px] h-[500px] glass rounded-3xl flex flex-col overflow-hidden shadow-2xl border border-white/10 animate-in fade-in slide-in-from-bottom-4">
           <div className="p-4 bg-blue-600 flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <Sparkles size={16} className="text-white" />
-              <p className="text-xs font-bold text-white uppercase tracking-widest">Nexora AI Assistant</p>
+              <ShieldCheck size={16} className="text-white" />
+              <p className="text-xs font-bold text-white uppercase tracking-widest">Nexora OS Chat</p>
             </div>
             <button onClick={() => setIsOpen(false)} className="text-white/80 hover:text-white"><X size={18} /></button>
           </div>

@@ -1,113 +1,109 @@
 
 import React, { useState } from 'react';
-import { Globe, DollarSign, Menu, X, ArrowRight } from 'lucide-react';
-import { WHATSAPP_LINK } from '../constants';
+import { Globe, DollarSign, ArrowRight, Menu, X, ShieldCheck, CheckCircle2 } from 'lucide-react';
+import { PHONE_NUMBER } from '../constants';
+import { Sidebar } from './Sidebar';
 
 interface HeaderProps {
   lang: 'ES' | 'EN';
   toggleLang: () => void;
   currency: 'USD' | 'MXN';
   toggleCurrency: () => void;
+  onOpenAdmin: () => void;
+  referralCode?: string | null;
 }
 
-export const Header: React.FC<HeaderProps> = ({ lang, toggleLang, currency, toggleCurrency }) => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+export const Header: React.FC<HeaderProps> = ({ lang, toggleLang, currency, toggleCurrency, onOpenAdmin, referralCode }) => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const navLinks = [
-    { href: "#hero", text: lang === 'ES' ? 'INICIO' : 'HOME' },
-    { href: "#presentation", text: lang === 'ES' ? 'PRESENTACIÓN' : 'SHOWCASE' },
-    { href: "#portfolio", text: lang === 'ES' ? 'PORTAFOLIO' : 'PORTFOLIO' },
-    { href: "#faq", text: lang === 'ES' ? 'PREGUNTAS' : 'FAQ' },
-  ];
+  const baseMessage = lang === 'ES' 
+    ? "Hola Nexora! Me interesa el paquete Socio Nexora." 
+    : "Hi Nexora! I'm interested in the Socio Nexora pack.";
+  
+  const fullMessage = referralCode 
+    ? `${baseMessage} REF: ${referralCode}` 
+    : baseMessage;
+  
+  const waLink = `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(fullMessage)}`;
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-[100] bg-[#050a14]/90 backdrop-blur-3xl border-b border-white/5">
-      <div className="max-w-[1600px] mx-auto px-10 h-24 flex items-center justify-between">
-        
-        {/* Logo - Consistente con el estilo Nexora */}
-        <div 
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="flex items-center gap-4 cursor-pointer group"
-        >
-          <div className="w-12 h-12 rounded-2xl bg-blue-600 flex items-center justify-center shadow-[0_0_30px_rgba(37,99,235,0.4)]">
-             <span className="text-white font-black text-2xl tracking-tighter">N</span>
-          </div>
-          <span className="font-poppins font-black text-xl tracking-tighter text-white uppercase flex items-center">
-            <span className="text-blue-500 mr-2">STUDIO</span>NEXORA
-          </span>
-        </div>
-
-        {/* Desktop Nav - Letras muy juntas y mayúsculas */}
-        <nav className="hidden xl:flex items-center gap-14">
-          {navLinks.map((link) => (
-            <a 
-              key={link.href}
-              href={link.href}
-              className="text-[11px] font-black uppercase tracking-[0.25em] text-slate-400 hover:text-white transition-all"
+    <>
+      <header className="fixed top-0 left-0 right-0 z-[100] bg-[#030711]/80 backdrop-blur-xl border-b border-white/5">
+        <div className="max-w-[1600px] mx-auto px-8 h-24 flex items-center justify-between">
+          
+          {/* Logo y Menu Trigger */}
+          <div className="flex items-center gap-6">
+            <button 
+              onClick={() => setIsMenuOpen(true)}
+              className="w-12 h-12 flex items-center justify-center text-slate-400 hover:text-white transition-colors"
             >
-              {link.text}
-            </a>
-          ))}
-        </nav>
-        
-        {/* Desktop Actions - RÉPLICA EXACTA DE BOTONES PILL */}
-        <div className="hidden lg:flex items-center gap-5">
-          <button 
-            onClick={toggleCurrency}
-            className="header-pill"
-          >
-            <DollarSign size={16} className="text-blue-500" />
-            $ {currency}
-          </button>
-          <button 
-            onClick={toggleLang}
-            className="header-pill"
-          >
-            <Globe size={16} className="text-blue-500" />
-            {lang}
-          </button>
-          <a 
-            href={WHATSAPP_LINK}
-            className="flex items-center gap-3 px-10 py-4 bg-blue-600 text-white text-[12px] font-black uppercase tracking-[0.2em] rounded-2xl hover:bg-blue-500 transition-all shadow-xl shadow-blue-600/30 group"
-          >
-            {lang === 'ES' ? 'CONTACTO' : 'CONTACT'}
-            <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-          </a>
-        </div>
-
-        {/* Mobile Toggle */}
-        <button 
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="lg:hidden p-2 text-white"
-        >
-          {isMobileMenuOpen ? <X size={36} /> : <Menu size={36} />}
-        </button>
-      </div>
-
-      {/* Mobile Menu Overlay */}
-      <div className={`fixed inset-0 top-24 z-50 bg-[#050a14] transition-all duration-300 lg:hidden ${isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
-        <div className="flex flex-col p-12 gap-12 text-center">
-          <nav className="flex flex-col gap-10">
-            {navLinks.map((link) => (
-              <a 
-                key={link.href}
-                href={link.href}
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="text-5xl font-black uppercase tracking-tighter text-white"
-              >
-                {link.text}
-              </a>
-            ))}
-          </nav>
-          <div className="grid grid-cols-2 gap-4">
-             <button onClick={toggleCurrency} className="py-8 rounded-full bg-white/5 border border-white/10 text-[14px] font-black text-white uppercase">$ {currency}</button>
-             <button onClick={toggleLang} className="py-8 rounded-full bg-white/5 border border-white/10 text-[14px] font-black text-white uppercase">{lang}</button>
+              <Menu size={28} />
+            </button>
+            
+            <div 
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              className="flex items-center gap-4 cursor-pointer group"
+            >
+              {/* LOGO ORIGINAL RESTAURADO */}
+              <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center shadow-[0_0_20px_rgba(37,99,235,0.3)] transition-transform group-hover:scale-110">
+                 <span className="text-white font-black text-xl tracking-tighter">N</span>
+              </div>
+              <div className="hidden sm:flex flex-col">
+                <span className="font-poppins font-black text-lg tracking-[-0.05em] text-white uppercase flex items-center">
+                  <span className="text-blue-500 mr-2">STUDIO</span>NEXORA
+                </span>
+                <div className="flex items-center gap-2 mt-0.5">
+                   <CheckCircle2 size={10} className="text-amber-500" />
+                   <span className="text-[10px] font-black text-amber-500 uppercase tracking-[0.22em] drop-shadow-[0_0_8px_rgba(245,158,11,0.4)]">
+                     English Proficiency Certified
+                   </span>
+                </div>
+              </div>
+            </div>
           </div>
-          <a href={WHATSAPP_LINK} className="w-full py-8 bg-blue-600 text-white font-black text-center rounded-3xl uppercase tracking-[0.2em] text-lg shadow-2xl shadow-blue-500/20">
-            {lang === 'ES' ? 'INICIAR PROYECTO' : 'START PROJECT'}
-          </a>
+
+          {/* Actions */}
+          <div className="flex items-center gap-4">
+            <button 
+              onDoubleClick={onOpenAdmin}
+              className="w-10 h-10 flex items-center justify-center text-white/5 hover:text-blue-500/20 transition-colors"
+              title="Admin Access (Double Click)"
+            >
+              <ShieldCheck size={16} />
+            </button>
+
+            <button 
+              onClick={toggleCurrency}
+              className="header-pill hidden lg:flex"
+            >
+              <DollarSign size={20} className="text-blue-500" />
+              $ {currency}
+            </button>
+            <button 
+              onClick={toggleLang}
+              className="header-pill hidden md:flex"
+            >
+              <Globe size={20} className="text-blue-500" />
+              {lang}
+            </button>
+            <a 
+              href={waLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 px-8 py-3.5 bg-blue-600 text-white text-[11px] font-black uppercase tracking-[0.2em] rounded-2xl hover:bg-blue-500 transition-all shadow-xl shadow-blue-600/30 group"
+            >
+              {lang === 'ES' ? 'CONTACTO' : 'CONTACT'}
+              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+            </a>
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
+
+      <Sidebar 
+        isOpen={isMenuOpen} 
+        onClose={() => setIsMenuOpen(false)} 
+        lang={lang} 
+      />
+    </>
   );
 };

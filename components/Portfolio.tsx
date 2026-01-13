@@ -1,7 +1,6 @@
 
 import React from 'react';
-import { Search, Crown, Users, User, Briefcase, MessageCircle } from 'lucide-react';
-import { WHATSAPP_LINK } from '../constants';
+import { Search, Crown, Users, User, Briefcase } from 'lucide-react';
 
 interface PortfolioProps {
   lang: 'ES' | 'EN';
@@ -35,13 +34,11 @@ export const Portfolio: React.FC<PortfolioProps> = ({ lang }) => {
     },
     { 
       title: lang === 'ES' ? 'Landing de Venta' : 'Sales Landing', 
-      tag: 'Conversión', 
+      tag: lang === 'ES' ? 'Conversión' : 'Conversion', 
       category: 'MARKETING',
       icon: <Crown size={16} />,
-      img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800', // Imagen enfocada en dashboard/ventas
-      startBW: false,
-      isSpecial: true,
-      badgeText: lang === 'ES' ? 'CONVERSIÓN' : 'CONVERSION'
+      img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800',
+      startBW: false
     }
   ];
 
@@ -77,29 +74,13 @@ export const Portfolio: React.FC<PortfolioProps> = ({ lang }) => {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#050a14] via-[#050a14]/10 to-transparent opacity-90"></div>
               
-              {/* Specialized Badge at Top (as per request) */}
-              {b.isSpecial ? (
-                <div className="absolute top-6 left-6 flex items-center gap-2 px-4 py-2 bg-white/90 backdrop-blur-md rounded-full shadow-lg border border-white/20">
-                  <Crown size={18} className="text-blue-500" />
-                  <span className="text-[10px] font-black text-blue-400/80 uppercase tracking-widest">{b.badgeText}</span>
-                </div>
-              ) : (
-                <div className="absolute top-6 left-6">
-                   <div className="flex items-center gap-2 px-3 py-1 bg-white/5 backdrop-blur-md rounded-full border border-white/10">
-                     <span className="text-blue-400">{b.icon}</span>
-                     <span className="text-[9px] font-bold text-slate-300 uppercase tracking-widest">{b.tag}</span>
-                   </div>
-                </div>
-              )}
-
-              {/* Floating WhatsApp on Special Card */}
-              {b.isSpecial && (
-                <div className="absolute bottom-24 right-6 group-hover:scale-110 transition-transform duration-500">
-                  <div className="w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center text-white shadow-[0_10px_30px_rgba(37,211,102,0.4)]">
-                    <MessageCircle size={28} fill="currentColor" />
-                  </div>
-                </div>
-              )}
+              {/* Pill Badge unificado para todos */}
+              <div className="absolute top-6 left-6">
+                 <div className="flex items-center gap-2 px-3 py-1 bg-white/5 backdrop-blur-md rounded-full border border-white/10">
+                   <span className="text-blue-400">{b.icon}</span>
+                   <span className="text-[9px] font-bold text-slate-300 uppercase tracking-widest">{b.tag}</span>
+                 </div>
+              </div>
 
               <div className="absolute bottom-8 left-8 right-8">
                 <p className="text-[11px] font-black text-blue-500 uppercase tracking-[0.2em] mb-2">{b.category}</p>

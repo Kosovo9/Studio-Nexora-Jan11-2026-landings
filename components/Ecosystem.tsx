@@ -51,8 +51,8 @@ export const Ecosystem: React.FC<EcosystemProps> = ({ lang }) => {
           </div>
           <p className="text-slate-500 text-sm md:text-base max-w-sm lg:text-right leading-relaxed font-medium uppercase tracking-widest">
             {lang === 'ES' 
-              ? 'Tu landing no es una isla, es el centro de mando de tu presencia digital.' 
-              : 'Your landing is not an island, it is the command center of your digital presence.'}
+              ? 'Tu landing es el centro de mando de tu presencia digital.' 
+              : 'Your landing is the command center of your digital presence.'}
           </p>
         </div>
 
@@ -63,7 +63,7 @@ export const Ecosystem: React.FC<EcosystemProps> = ({ lang }) => {
                 {/* Glow Background */}
                 <div className="absolute inset-0 bg-blue-600/0 group-hover:bg-blue-600/5 transition-colors duration-700"></div>
                 
-                {/* Icon Container (Similar to User Request Image) */}
+                {/* Icon Container */}
                 <div className="w-24 h-24 rounded-[2.5rem] bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 group-hover:text-blue-400 group-hover:border-blue-500/50 group-hover:scale-110 transition-all duration-700 mb-8 shadow-2xl relative z-10">
                   {c.icon}
                 </div>
@@ -90,7 +90,7 @@ export const Ecosystem: React.FC<EcosystemProps> = ({ lang }) => {
                <div key={i} className="w-2 h-2 rounded-full bg-blue-500/20"></div>
              ))}
            </div>
-           <p className="text-blue-400 font-mono text-[10px] tracking-[0.3em] font-bold">READY TO DEPLOY // 2025</p>
+           <p className="text-blue-400 font-mono text-[10px] tracking-[0.3em] font-bold">READY TO DEPLOY // 2026</p>
         </div>
       </div>
     </section>

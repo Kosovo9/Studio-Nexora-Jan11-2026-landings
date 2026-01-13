@@ -1,19 +1,30 @@
 
 import React from 'react';
-import { ExternalLink, Check, Star, Navigation, Laptop, ShieldCheck, Zap } from 'lucide-react';
-import { REFERENCE_LANDING_LINK, WHATSAPP_LINK } from '../constants';
+import { ExternalLink, Star, Navigation, Laptop, ShieldCheck, Zap } from 'lucide-react';
+import { REFERENCE_LANDING_LINK, PHONE_NUMBER } from '../constants';
 
 interface WorkSamplesProps {
   lang: 'ES' | 'EN';
+  referralCode?: string | null;
 }
 
-export const WorkSamples: React.FC<WorkSamplesProps> = ({ lang }) => {
+export const WorkSamples: React.FC<WorkSamplesProps> = ({ lang, referralCode }) => {
   const oscarFeatures = [
     { label: lang === 'ES' ? 'Smooth Scrolling Cinemático' : 'Cinematic Smooth Scrolling', icon: <Navigation size={14}/> },
     { label: lang === 'ES' ? 'Capas de Cristal (Glassmorphism)' : 'Glassmorphism Layering', icon: <ShieldCheck size={14}/> },
     { label: lang === 'ES' ? 'Responsive Grid Inteligente' : 'Smart Responsive Grid', icon: <Laptop size={14}/> },
     { label: lang === 'ES' ? 'Performance Score: 99/100' : 'Performance Score: 99/100', icon: <Zap size={14}/> },
   ];
+
+  const baseMessage = lang === 'ES' 
+    ? "Hola Nexora! Vi el caso de Oscar Tapia y me interesa un proyecto igual para mí." 
+    : "Hi Nexora! I saw the Oscar Tapia case and I want a similar project for myself.";
+  
+  const fullMessage = referralCode 
+    ? `${baseMessage} REF: ${referralCode}` 
+    : baseMessage;
+  
+  const waLink = `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(fullMessage)}`;
 
   return (
     <section id="work-samples" className="py-24 bg-[#050a14] relative">
@@ -86,7 +97,9 @@ export const WorkSamples: React.FC<WorkSamplesProps> = ({ lang }) => {
 
             <div className="pt-6 border-t border-white/10">
               <a 
-                href={WHATSAPP_LINK}
+                href={waLink}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group relative block w-full py-5 bg-blue-600 text-white font-black text-center rounded-2xl hover:bg-blue-500 transition-all transform active:scale-95 shadow-[0_20px_40px_rgba(37,99,235,0.2)] uppercase text-xs tracking-[0.2em]"
               >
                 {lang === 'ES' ? 'Apartar Proyecto Igual' : 'Reserve Same Project'}

@@ -1,19 +1,67 @@
 
 import React, { useState } from 'react';
-import { Gift, Users, Copy, Check, Ticket, Award, Sparkles } from 'lucide-react';
+import { Gift, Users, Copy, Check, Ticket, Award, Sparkles, Link as LinkIcon, ChevronRight, Calculator, DollarSign, Globe2, ShieldCheck } from 'lucide-react';
+import { CURRENCY_MXN, CURRENCY_USD } from '../constants';
 
 interface RewardsProps {
   lang: 'ES' | 'EN';
+  currency: 'USD' | 'MXN';
 }
 
-export const Rewards: React.FC<RewardsProps> = ({ lang }) => {
+export const Rewards: React.FC<RewardsProps> = ({ lang, currency }) => {
+  const [step, setStep] = useState<'invite' | 'register' | 'dashboard'>('invite');
+  const [name, setName] = useState('');
+  const [partnerCode, setPartnerCode] = useState('');
   const [copied, setCopied] = useState(false);
-  const [partnerCode] = useState(() => `NX-${Math.random().toString(36).substring(2, 6).toUpperCase()}-15`);
+  const [linkCopied, setLinkCopied] = useState(false);
+  
+  // Calculadora
+  const [salesCount, setSalesCount] = useState(3);
 
-  const handleCopy = () => {
+  const promoPrice = currency === 'USD' ? '$165' : '$2,999';
+
+  const marketPrices = [
+    { 
+      region: lang === 'ES' ? 'Estados Unidos / Global' : 'USA / Global', 
+      market: currency === 'USD' ? '$2,500 - $5,000' : '$45,000 - $90,000', 
+      promo: promoPrice 
+    },
+    { 
+      region: lang === 'ES' ? 'Canadá / UK' : 'Canada / UK', 
+      market: currency === 'USD' ? '$2,000 - $4,500' : '$36,000 - $81,000', 
+      promo: promoPrice 
+    },
+    { 
+      region: lang === 'ES' ? 'Europa (EU)' : 'Europe (EU)', 
+      market: currency === 'USD' ? '$1,800 - $4,000' : '$32,000 - $72,000', 
+      promo: promoPrice 
+    },
+    { 
+      region: lang === 'ES' ? 'México / LATAM' : 'Mexico / LATAM', 
+      market: currency === 'USD' ? '$800 - $1,500' : '$14,000 - $27,000', 
+      promo: promoPrice 
+    },
+  ];
+
+  const handleRegister = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!name.trim()) return;
+    const code = `NX-${name.substring(0, 4).toUpperCase()}-${Math.floor(10 + Math.random() * 90)}`;
+    setPartnerCode(code);
+    setStep('dashboard');
+  };
+
+  const handleCopyCode = () => {
     navigator.clipboard.writeText(partnerCode);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
+  };
+
+  const handleCopyLink = () => {
+    const refLink = `${window.location.origin}${window.location.pathname}?ref=${partnerCode}`;
+    navigator.clipboard.writeText(refLink);
+    setLinkCopied(true);
+    setTimeout(() => setLinkCopied(false), 2000);
   };
 
   return (
@@ -21,102 +69,198 @@ export const Rewards: React.FC<RewardsProps> = ({ lang }) => {
       <div className="absolute top-0 right-0 w-full h-full bg-blue-600/5 blur-[120px] pointer-events-none"></div>
       
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="text-center mb-20 reveal">
+        <div className="text-center mb-16 reveal">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 text-blue-400 text-[11px] font-black tracking-[0.3em] border border-blue-500/20 mb-6 uppercase">
             <Award size={14} />
-            {lang === 'ES' ? 'Nexora Loyalty Hub' : 'Nexora Loyalty Hub'}
+            {lang === 'ES' ? 'Ecosistema de Crecimiento' : 'Growth Ecosystem'}
           </div>
           <h2 className="text-huge text-white mb-6 uppercase">
-            {lang === 'ES' ? 'CRECE CON' : 'GROW WITH'} <br />
-            <span className="text-metallic-gold">{lang === 'ES' ? 'NOSOTROS' : 'US'}</span>
+            {lang === 'ES' ? 'SÉ NUESTRO' : 'BE OUR'} <br />
+            <span className="text-metallic-gold">{lang === 'ES' ? 'SOCIO ELITE' : 'ELITE PARTNER'}</span>
           </h2>
           <p className="text-slate-400 max-w-2xl mx-auto text-base font-medium leading-relaxed">
             {lang === 'ES' 
-              ? 'Premiamos tu confianza. Obtén beneficios exclusivos en tu segundo proyecto o al recomendar nuestro ecosistema.' 
-              : 'We reward your trust. Get exclusive benefits on your second project or by recommending our ecosystem.'}
+              ? 'Ofrecemos ingeniería de $2,500 USD por una fracción del costo. Únete como socio y obtén el 20% de comisión por cada venta.' 
+              : 'We offer $2,500 USD engineering for a fraction of the cost. Join as a partner and get 20% commission per sale.'}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-          {/* Card 1: Socio Recurrente */}
-          <div className="group glass p-12 rounded-[3rem] border border-white/5 hover:border-blue-500/40 transition-all duration-700 reveal">
-            <div className="flex items-center gap-6 mb-10">
-              <div className="w-20 h-20 rounded-3xl bg-blue-600/10 border border-blue-500/20 flex items-center justify-center text-blue-400 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition-all duration-500">
-                <Gift size={36} />
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          
+          {/* Lado Izquierdo: Comparativa de Precios Global */}
+          <div className="lg:col-span-7 space-y-8 reveal">
+            
+            <div className="glass p-10 rounded-[2.5rem] border border-white/5 bg-[#050a14]/60 overflow-hidden shadow-2xl relative">
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600 via-amber-500 to-blue-600 opacity-30"></div>
+              
+              <h3 className="text-white font-black text-sm uppercase tracking-[0.4em] mb-10 flex items-center gap-4">
+                <div className="w-8 h-8 rounded-lg bg-blue-600/20 flex items-center justify-center text-blue-400">
+                  <Globe2 size={16} />
+                </div>
+                {lang === 'ES' ? `Comparativa Global (${currency})` : `Global Price Comparison (${currency})` }
+              </h3>
+
+              <div className="w-full overflow-x-auto">
+                <table className="w-full text-left">
+                  <thead>
+                    <tr className="border-b border-white/5">
+                      <th className="pb-6 text-[10px] font-black text-slate-500 uppercase tracking-[0.2em]">{lang === 'ES' ? 'Región' : 'Region'}</th>
+                      <th className="pb-6 text-[10px] font-black text-slate-500 uppercase tracking-[0.2em]">{lang === 'ES' ? `Precio Mercado (${currency})` : `Market Price (${currency})`}</th>
+                      <th className="pb-6 text-[10px] font-black text-blue-500 uppercase tracking-[0.2em] text-right">{lang === 'ES' ? 'Precio Nexora' : 'Nexora Price'}</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-white/5">
+                    {marketPrices.map((item, idx) => (
+                      <tr key={idx} className="group hover:bg-white/[0.02] transition-colors">
+                        <td className="py-5 text-sm font-bold text-white uppercase tracking-tight">{item.region}</td>
+                        <td className="py-5 text-sm font-medium text-slate-400 italic">{item.market}</td>
+                        <td className="py-5 text-right">
+                          <span className="text-xl font-black text-metallic-gold tracking-tight">{item.promo}</span>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
-              <div>
-                <h3 className="text-3xl font-black text-white uppercase tracking-tight">{lang === 'ES' ? 'Socio Recurrente' : 'Repeat Partner'}</h3>
-                <p className="text-blue-500 font-bold text-sm tracking-widest">{lang === 'ES' ? 'BENEFICIO DIRECTO' : 'DIRECT BENEFIT'}</p>
+
+              <div className="mt-8 pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div className="flex items-center gap-2 text-[8px] text-slate-600 font-bold uppercase tracking-[0.2em]">
+                  <ShieldCheck size={10} className="text-blue-900" />
+                  {lang === 'ES' 
+                    ? 'Actualizado: Enero 2026 | Fuente: Clutch.co, Reports 2026' 
+                    : 'Updated: January 2026 | Source: Clutch.co, Reports 2026'}
+                </div>
+                <div className="px-3 py-1 bg-blue-600/10 rounded-full border border-blue-500/10">
+                  <span className="text-[8px] font-black text-blue-400 uppercase tracking-widest">Global Standard Approved</span>
+                </div>
               </div>
             </div>
-            <p className="text-slate-400 text-lg leading-relaxed mb-8">
-              {lang === 'ES' 
-                ? 'Estrena un segundo proyecto con nosotros y obtén automáticamente un 15% de descuento sobre el precio promocional.' 
-                : 'Launch a second project with us and automatically get a 15% discount on the promotional price.'}
-            </p>
-            <div className="flex items-center gap-4 p-6 bg-white/5 rounded-2xl border border-white/10">
-              <Sparkles className="text-amber-500" />
-              <span className="text-white font-bold text-lg">15% OFF <span className="text-slate-500 font-medium text-sm ml-2">{lang === 'ES' ? 'En tu 2da Landing' : 'On your 2nd Landing'}</span></span>
+
+            {/* Calculadora de Ganancias */}
+            <div className="glass p-10 rounded-[2.5rem] border border-white/10 bg-gradient-to-br from-blue-600/5 to-transparent">
+              <div className="flex items-center gap-4 mb-8">
+                <Calculator className="text-blue-500" />
+                <h3 className="text-xl font-black text-white uppercase tracking-tighter">{lang === 'ES' ? 'Calculadora de Comisiones' : 'Commission Calculator'}</h3>
+              </div>
+              
+              <div className="space-y-10">
+                <div>
+                  <div className="flex justify-between mb-4">
+                    <span className="text-slate-400 text-xs font-bold uppercase tracking-widest">{lang === 'ES' ? 'Ventas Referidas' : 'Referral Sales'}</span>
+                    <span className="text-blue-500 font-black text-xl">{salesCount}</span>
+                  </div>
+                  <input 
+                    type="range" min="1" max="20" value={salesCount} 
+                    onChange={(e) => setSalesCount(parseInt(e.target.value))}
+                    className="w-full h-2 bg-white/5 rounded-lg appearance-none cursor-pointer accent-blue-600"
+                  />
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="p-6 bg-white/5 rounded-2xl border border-white/5">
+                    <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest mb-2">{lang === 'ES' ? 'Tu Comisión (MXN)' : 'Your Commission (MXN)'}</p>
+                    <p className="text-3xl font-black text-white">${(salesCount * 600).toLocaleString()}</p>
+                  </div>
+                  <div className="p-6 bg-blue-600/10 rounded-2xl border border-blue-500/20">
+                    <p className="text-[10px] text-blue-500 font-bold uppercase tracking-widest mb-2">{lang === 'ES' ? 'Tu Comisión (USD)' : 'Your Commission (USD)'}</p>
+                    <p className="text-3xl font-black text-white">${(salesCount * 33).toLocaleString()}</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* Card 2: Embajador Nexora */}
-          <div className="group glass p-12 rounded-[3rem] border border-white/5 hover:border-amber-500/40 transition-all duration-700 reveal" style={{ transitionDelay: '200ms' }}>
-            <div className="flex items-center gap-6 mb-10">
-              <div className="w-20 h-20 rounded-3xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-500 group-hover:scale-110 group-hover:bg-amber-500 group-hover:text-black transition-all duration-500">
-                <Users size={36} />
-              </div>
-              <div>
-                <h3 className="text-3xl font-black text-white uppercase tracking-tight">{lang === 'ES' ? 'Embajador Elite' : 'Elite Ambassador'}</h3>
-                <p className="text-amber-500 font-bold text-sm tracking-widest">{lang === 'ES' ? 'PROGRAMA REFERIDOS' : 'REFERRAL PROGRAM'}</p>
-              </div>
-            </div>
-            <p className="text-slate-400 text-lg leading-relaxed mb-8">
-              {lang === 'ES' 
-                ? 'Recomiéndanos. Si tu referido cierra su proyecto, tú ganas un 15% de descuento canjeable en cualquiera de tus futuras landings.' 
-                : 'Recommend us. If your referral closes their project, you earn a 15% discount redeemable on any of your future landings.'}
-            </p>
-            <div className="flex items-center gap-4 p-6 bg-amber-500/10 rounded-2xl border border-amber-500/20">
-              <Award className="text-amber-500" />
-              <span className="text-white font-bold text-lg">15% CREDIT <span className="text-slate-500 font-medium text-sm ml-2">{lang === 'ES' ? 'Por cada venta cerrada' : 'Per closed sale'}</span></span>
-            </div>
-          </div>
-        </div>
-
-        {/* Micro-feature: Personalized Voucher */}
-        <div className="max-w-4xl mx-auto reveal" style={{ transitionDelay: '400ms' }}>
-           <div className="p-1 glass rounded-[3rem] border border-white/5 bg-gradient-to-br from-white/10 to-transparent">
-              <div className="p-10 md:p-16 flex flex-col md:flex-row items-center justify-between gap-12 text-center md:text-left bg-[#050a14] rounded-[2.9rem]">
-                 <div className="space-y-4 max-w-md">
-                    <h4 className="text-3xl font-black text-white uppercase tracking-tighter">
-                      {lang === 'ES' ? 'TU CÓDIGO DE SOCIO' : 'YOUR PARTNER CODE'}
-                    </h4>
-                    <p className="text-slate-500 text-sm leading-relaxed">
-                      {lang === 'ES' 
-                        ? 'Comparte este código único. Al ser ingresado en una cotización exitosa, activamos tu recompensa.' 
-                        : 'Share this unique code. When entered in a successful quote, we activate your reward.'}
-                    </p>
-                 </div>
-                 
-                 <div className="relative group">
-                    <div className="absolute -inset-4 bg-blue-600/20 blur-2xl group-hover:bg-blue-600/40 transition-all duration-700 rounded-full"></div>
-                    <div className="relative flex flex-col items-center gap-6">
-                       <div className="flex items-center gap-4 px-10 py-8 bg-white/5 border-2 border-dashed border-blue-500/40 rounded-3xl group-hover:border-blue-500 transition-all duration-500">
-                          <Ticket className="text-blue-500 shrink-0" size={32} />
-                          <span className="text-4xl font-black text-white tracking-[0.2em] font-mono">{partnerCode}</span>
-                       </div>
-                       
-                       <button 
-                         onClick={handleCopy}
-                         className={`flex items-center gap-3 px-8 py-4 rounded-2xl font-black uppercase tracking-widest text-xs transition-all duration-500 ${copied ? 'bg-green-600 text-white' : 'bg-blue-600 text-white hover:bg-blue-500 hover:scale-105'}`}
-                       >
-                         {copied ? <Check size={18} /> : <Copy size={18} />}
-                         {copied ? (lang === 'ES' ? 'COPIADO' : 'COPIED') : (lang === 'ES' ? 'COPIAR CÓDIGO' : 'COPY CODE')}
-                       </button>
+          {/* Lado Derecho: Registro y Link */}
+          <div className="lg:col-span-5 reveal" style={{ transitionDelay: '200ms' }}>
+            <div className="glass rounded-[3rem] border border-white/5 overflow-hidden shadow-2xl relative">
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600 via-amber-500 to-blue-600"></div>
+              
+              <div className="p-10">
+                {step === 'invite' && (
+                  <div className="text-center space-y-8 py-6">
+                    <div className="w-20 h-20 bg-blue-600/20 rounded-3xl flex items-center justify-center mx-auto text-blue-500 mb-6 animate-bounce">
+                      <Users size={40} />
                     </div>
-                 </div>
+                    <h3 className="text-2xl font-black text-white uppercase">{lang === 'ES' ? 'Únete a la Red Elite' : 'Join the Elite Network'}</h3>
+                    <p className="text-slate-400 text-sm leading-relaxed">
+                      {lang === 'ES' 
+                        ? 'Cualquiera puede ser socio. Solo necesitas compartir el valor de Nexora con tu red.' 
+                        : 'Anyone can be a partner. You just need to share Nexora\'s value with your network.'}
+                    </p>
+                    <button 
+                      onClick={() => setStep('register')}
+                      className="w-full py-5 bg-white text-black font-black rounded-2xl uppercase tracking-widest text-[11px] hover:bg-slate-200 transition-all flex items-center justify-center gap-3"
+                    >
+                      {lang === 'ES' ? 'Obtener mi Código' : 'Get my Code'}
+                      <ChevronRight size={16} />
+                    </button>
+                  </div>
+                )}
+
+                {step === 'register' && (
+                  <div className="space-y-8 py-4">
+                    <h3 className="text-xl font-black text-white uppercase tracking-tight">{lang === 'ES' ? 'Registro de Socio' : 'Partner Registration'}</h3>
+                    <form onSubmit={handleRegister} className="space-y-6">
+                      <div>
+                        <label className="block text-[10px] text-slate-500 font-bold uppercase tracking-widest mb-3">{lang === 'ES' ? 'Nombre o Alias Público' : 'Public Name or Alias'}</label>
+                        <input 
+                          type="text" 
+                          value={name}
+                          onChange={(e) => setName(e.target.value)}
+                          placeholder="EJ: NEXORAUSER"
+                          className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white font-bold tracking-widest focus:border-blue-500 focus:outline-none uppercase"
+                          required
+                        />
+                      </div>
+                      <button 
+                        type="submit"
+                        className="w-full py-5 bg-blue-600 text-white font-black rounded-2xl uppercase tracking-widest text-[11px] hover:bg-blue-500 shadow-xl shadow-blue-600/20 transition-all"
+                      >
+                        {lang === 'ES' ? 'Activar mi Código' : 'Activate my Code'}
+                      </button>
+                    </form>
+                  </div>
+                )}
+
+                {step === 'dashboard' && (
+                  <div className="space-y-8 py-4">
+                    <div className="flex items-center gap-4 p-4 bg-green-500/10 rounded-2xl border border-green-500/20">
+                      <Check className="text-green-500" />
+                      <span className="text-xs font-bold text-green-500 uppercase tracking-widest">{lang === 'ES' ? 'Socio Elite Activo' : 'Elite Partner Active'}</span>
+                    </div>
+
+                    <div className="space-y-6">
+                      <div className="p-8 bg-white/5 border-2 border-dashed border-blue-500/40 rounded-3xl text-center group">
+                        <p className="text-[10px] text-slate-500 font-bold uppercase tracking-[0.3em] mb-4">{lang === 'ES' ? 'Tu Código Único' : 'Your Unique Code'}</p>
+                        <span className="text-4xl font-black text-white tracking-[0.2em] font-mono block mb-6">{partnerCode}</span>
+                        <button 
+                          onClick={handleCopyCode}
+                          className={`w-full flex items-center justify-center gap-3 py-4 rounded-xl font-black uppercase tracking-widest text-[10px] transition-all ${copied ? 'bg-green-600 text-white' : 'bg-white/10 text-white hover:bg-white/20'}`}
+                        >
+                          {copied ? <Check size={14} /> : <Copy size={14} />}
+                          {copied ? (lang === 'ES' ? 'COPIADO' : 'COPIED') : (lang === 'ES' ? 'COPIAR CÓDIGO' : 'COPY CODE')}
+                        </button>
+                      </div>
+
+                      <button 
+                        onClick={handleCopyLink}
+                        className={`w-full flex items-center justify-center gap-4 py-6 rounded-2xl font-black uppercase tracking-[0.2em] text-[11px] transition-all ${linkCopied ? 'bg-green-600 text-white' : 'bg-blue-600 text-white hover:bg-blue-500 shadow-2xl shadow-blue-600/30'}`}
+                      >
+                        {linkCopied ? <Check size={18} /> : <LinkIcon size={18} />}
+                        {linkCopied ? (lang === 'ES' ? 'LINK DE SOCIO COPIADO' : 'PARTNER LINK COPIED') : (lang === 'ES' ? 'COPIAR LINK DE SOCIO' : 'COPY PARTNER LINK')}
+                      </button>
+                    </div>
+
+                    <p className="text-center text-[10px] text-slate-500 font-medium leading-relaxed">
+                      {lang === 'ES' 
+                        ? 'Al usar este link, el código se registra automáticamente en el WhatsApp. Tú solo cobras tu 20%.' 
+                        : 'By using this link, the code is automatically registered in WhatsApp. You just collect your 20%.'}
+                    </p>
+                  </div>
+                )}
               </div>
-           </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

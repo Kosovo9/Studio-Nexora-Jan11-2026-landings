@@ -10,6 +10,15 @@ interface CheckoutModalProps {
   referralCode?: string | null;
 }
 
+interface ConfigOptionProps {
+  active: boolean;
+  onClick: () => void;
+  title: string;
+  desc: string;
+  icon: React.ReactNode;
+  highlight?: boolean;
+}
+
 export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, lang, currency, referralCode }) => {
   const [step, setStep] = useState(1);
   const [config, setConfig] = useState({
@@ -161,7 +170,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose, l
   );
 };
 
-const ConfigOption = ({ active, onClick, title, desc, icon, highlight }: any) => (
+const ConfigOption: React.FC<ConfigOptionProps> = ({ active, onClick, title, desc, icon, highlight }) => (
   <button 
     onClick={onClick}
     className={`p-6 text-left rounded-2xl border transition-all duration-300 group ${

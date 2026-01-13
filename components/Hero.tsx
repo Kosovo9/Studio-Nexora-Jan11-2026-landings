@@ -13,8 +13,8 @@ export const Hero: React.FC<HeroProps> = ({ lang, currency, onLaunchClick }) => 
   const originalPriceValue = currency === 'MXN' ? "9,000.00" : "500.00";
   
   const promoText = lang === 'ES' 
-    ? 'LANZAMIENTO: 12/01/2026 • FINALIZA: 19/01/2026'
-    : 'LAUNCH: 01/12/2026 • ENDS: 01/19/2026';
+    ? 'LANZAMIENTO: 13/01/2026 • FINALIZA: 20/01/2026'
+    : 'LAUNCH: 01/13/2026 • ENDS: 01/20/2026';
   
   return (
     <section id="hero" className="relative min-h-screen flex flex-col items-center justify-start pt-40 pb-16 px-4 overflow-hidden bg-[#030711]">
@@ -39,7 +39,7 @@ export const Hero: React.FC<HeroProps> = ({ lang, currency, onLaunchClick }) => 
         </div>
 
         <div className="flex justify-center mb-12 reveal" style={{ transitionDelay: '100ms' }}>
-          <div className="px-10 py-3.5 rounded-full border border-blue-500/20 bg-blue-500/5 flex items-center gap-3 animate-flash-elite">
+          <div className="px-10 py-3.5 rounded-full border border-blue-500/20 bg-blue-500/5 flex items-center gap-3 animate-blink-urgent">
             <Zap size={14} className="text-blue-500 fill-blue-500/20" aria-hidden="true" />
             <span className="text-blue-400 text-[11px] md:text-[13px] font-black uppercase tracking-[0.3em]">
               {promoText}

@@ -20,6 +20,7 @@ import { AdminPanel } from './components/AdminPanel';
 import { SecurityGuard } from './components/SecurityGuard';
 import { ResponsiveShowcase } from './components/ResponsiveShowcase';
 import { CheckoutModal } from './components/CheckoutModal';
+import { EliteSnow } from './components/EliteSnow';
 import { ShieldCheck } from 'lucide-react';
 
 const App: React.FC = () => {
@@ -65,7 +66,8 @@ const App: React.FC = () => {
 
   return (
     <SecurityGuard>
-      <div className="min-h-screen bg-[#030711]">
+      <div className="min-h-screen bg-[#030711] relative">
+        <EliteSnow />
         <Header 
           lang={lang} 
           toggleLang={toggleLang} 
@@ -107,7 +109,6 @@ const App: React.FC = () => {
 
         <Footer lang={lang} />
         
-        {/* SOPORTE DIRECTO WHATSAPP */}
         <FloatingWA referralCode={referralCode} />
 
         <CheckoutModal 

@@ -61,11 +61,12 @@
         }
 
         .monolith-text {
-            font-size: clamp(2rem, 6.5vw, 5.8rem);
-            line-height: 0.85; 
+            font-size: clamp(2.2rem, 7vw, 6.2rem);
+            line-height: 0.82; 
             font-weight: 900;
             text-transform: uppercase;
             text-align: center;
+            letter-spacing: -0.02em;
         }
 
         /* Restauración de las Ráfagas de Oro (Double Shimmer) */
@@ -90,6 +91,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: shimmer-sweep 5s linear infinite;
+            filter: drop-shadow(0 0 10px rgba(234, 179, 8, 0.15));
         }
 
         .reveal {

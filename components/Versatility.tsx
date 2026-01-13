@@ -5,9 +5,10 @@ import { WHATSAPP_LINK } from '../constants';
 interface VersatilityProps {
   lang: 'ES' | 'EN';
   referralCode?: string | null;
+  onLaunchClick?: () => void;
 }
 
-export const Versatility: React.FC<VersatilityProps> = ({ lang, referralCode }) => {
+export const Versatility: React.FC<VersatilityProps> = ({ lang, referralCode, onLaunchClick }) => {
   const niches = [
     {
       icon: <UserCheck className="text-blue-500" />,
@@ -36,7 +37,7 @@ export const Versatility: React.FC<VersatilityProps> = ({ lang, referralCode }) 
     {
       icon: <ShoppingBag className="text-emerald-500" />,
       title: lang === 'ES' ? 'E-commerce & Ventas' : 'E-commerce & Sales',
-      desc: lang === 'ES' ? 'Landings de producto diseñadas para convertir clics en dinero.' : 'Product landings designed to convert clicks into revenue.',
+      desc: lang === 'ES' ? 'Landings de producto diseñadas para convertir clics en dinero.' : 'Product landings designed to convert clics into revenue.',
       examples: lang === 'ES' ? 'Lanzamientos, Dropshipping, Cursos' : 'Launches, Dropshipping, Courses'
     },
     {
@@ -47,9 +48,12 @@ export const Versatility: React.FC<VersatilityProps> = ({ lang, referralCode }) 
     }
   ];
 
-  const waLink = referralCode 
-    ? `${WHATSAPP_LINK}&text=${encodeURIComponent(`Hola Nexora! Me interesa una landing para mi negocio. REF: ${referralCode}`)}`
-    : WHATSAPP_LINK;
+  const handleAction = (e: React.MouseEvent) => {
+    if (onLaunchClick) {
+      e.preventDefault();
+      onLaunchClick();
+    }
+  };
 
   return (
     <section id="versatility" className="py-24 bg-[#030711] relative overflow-hidden">
@@ -86,21 +90,18 @@ export const Versatility: React.FC<VersatilityProps> = ({ lang, referralCode }) 
           <div className="glass p-10 rounded-[2.5rem] border-2 border-blue-500/20 bg-blue-600/5 text-center relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-50"></div>
             
-            {/* TITULAR RECTIFICADO: DOBLE ESPACIO (1.4) Y BALANCEADO AL 30% */}
             <h3 className="text-xl md:text-[2.2rem] font-black text-white mb-10 uppercase tracking-tight leading-[1.4]">
               {lang === 'ES' ? '¿Listo para dominar tu mercado?' : 'Ready to dominate your market?'}
             </h3>
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-              <a 
-                href={waLink}
-                target="_blank"
-                rel="noopener noreferrer"
+              <button 
+                onClick={handleAction}
                 className="w-full sm:w-auto px-14 py-7 bg-blue-600 text-white font-black rounded-[1.8rem] uppercase tracking-[0.3em] text-[11px] shadow-[0_30px_60px_rgba(37,99,235,0.3)] hover:bg-blue-500 transition-all active:scale-95 flex items-center justify-center gap-4 border border-white/20"
               >
                 {lang === 'ES' ? 'SOLICITAR MI LANDING ELITE' : 'REQUEST MY ELITE LANDING'}
                 <ArrowRight size={18} />
-              </a>
+              </button>
             </div>
             
             <p className="mt-10 text-[9px] text-slate-600 font-bold uppercase tracking-[0.5em]">

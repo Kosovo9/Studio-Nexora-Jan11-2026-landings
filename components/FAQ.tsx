@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 
@@ -31,13 +30,18 @@ export const FAQ: React.FC<FAQProps> = ({ lang }) => {
   ];
 
   return (
-    <section id="faq" className="py-24">
-      <div className="max-w-3xl mx-auto px-6">
-        <h2 className="text-3xl md:text-5xl font-bold text-white text-center mb-16">
-          {lang === 'ES' ? 'Preguntas' : 'Common'} <span className="text-blue-500">{lang === 'ES' ? 'Frecuentes' : 'Questions'}</span>
-        </h2>
+    <section id="faq" className="py-32 bg-[#030711]">
+      <div className="max-w-4xl mx-auto px-6">
+        <div className="text-center mb-24 reveal">
+          <div className="text-blue-500 font-black text-[10px] uppercase tracking-[0.5em] mb-8">Support Center</div>
+          {/* TITULAR RECTIFICADO: DOBLE ESPACIO (1.4) */}
+          <h2 className="text-3xl md:text-[3.4rem] font-black text-white uppercase leading-[1.4] tracking-tighter">
+            {lang === 'ES' ? 'PREGUNTAS' : 'COMMON'} <br/>
+            <span className="text-metallic-gold">{lang === 'ES' ? 'FRECUENTES' : 'QUESTIONS'}</span>
+          </h2>
+        </div>
 
-        <div className="space-y-4">
+        <div className="space-y-6 reveal" style={{ transitionDelay: '200ms' }}>
           {faqs.map((f, i) => (
             <FAQItem key={i} question={f.q} answer={f.a} />
           ))}
@@ -51,19 +55,21 @@ const FAQItem: React.FC<{ question: string, answer: string }> = ({ question, ans
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="glass rounded-2xl overflow-hidden transition-all">
+    <div className={`glass rounded-[2rem] overflow-hidden border transition-all duration-500 ${isOpen ? 'border-blue-500/40 bg-blue-600/5' : 'border-white/5'}`}>
       <button 
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full p-6 flex items-center justify-between text-left hover:bg-white/5 transition-colors"
+        className="w-full p-8 flex items-center justify-between text-left hover:bg-white/[0.02] transition-colors"
       >
-        <span className="font-bold text-white">{question}</span>
-        {isOpen ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+        <span className="font-black text-white text-sm md:text-lg uppercase tracking-tight leading-tight">{question}</span>
+        <div className={`w-10 h-10 rounded-full flex items-center justify-center transition-all ${isOpen ? 'bg-blue-600 text-white rotate-180' : 'bg-white/5 text-slate-500'}`}>
+          <ChevronDown size={20} />
+        </div>
       </button>
-      {isOpen && (
-        <div className="p-6 pt-0 text-slate-400 text-sm leading-relaxed border-t border-white/5">
+      <div className={`transition-all duration-500 ease-in-out ${isOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'} overflow-hidden`}>
+        <div className="p-8 pt-0 text-slate-400 text-sm md:text-base leading-relaxed font-medium border-t border-white/5">
           {answer}
         </div>
-      )}
+      </div>
     </div>
   );
 };

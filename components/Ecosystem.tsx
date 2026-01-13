@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Linkedin, Mail, MessageCircle, CreditCard, Share2, ShieldCheck } from 'lucide-react';
 import { LINKEDIN_LINK, EMAIL_LINK, WHATSAPP_LINK } from '../constants';
@@ -44,9 +43,10 @@ export const Ecosystem: React.FC<EcosystemProps> = ({ lang }) => {
               <Share2 size={18} />
               <span className="text-[10px] font-black uppercase tracking-[0.4em]">{lang === 'ES' ? 'Conectividad Total' : 'Total Connectivity'}</span>
             </div>
-            <h2 className="text-4xl md:text-6xl font-bold text-white leading-none">
-              {lang === 'ES' ? 'Puentes de' : 'Functional'} <br />
-              <span className="text-blue-500">{lang === 'ES' ? 'Conversión' : 'Bridges'}</span>
+            {/* TITULAR RECTIFICADO: DOBLE ESPACIO (1.4) Y REDUCCIÓN 30% */}
+            <h2 className="text-3xl md:text-[3.2rem] font-black text-white leading-[1.4] uppercase tracking-tighter">
+              {lang === 'ES' ? 'PUENTES DE' : 'FUNCTIONAL'} <br />
+              <span className="text-blue-500">{lang === 'ES' ? 'CONVERSIÓN' : 'BRIDGES'}</span>
             </h2>
           </div>
           <p className="text-slate-500 text-sm md:text-base max-w-sm lg:text-right leading-relaxed font-medium uppercase tracking-widest">

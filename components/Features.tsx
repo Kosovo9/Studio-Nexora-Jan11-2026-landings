@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Smartphone, Layout, Languages, MessageSquare, Wind, Zap, Globe, Cpu, CreditCard } from 'lucide-react';
 
@@ -45,8 +44,10 @@ export const Features: React.FC<FeaturesProps> = ({ lang }) => {
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16 reveal">
           <div className="text-blue-500 font-mono text-xs mb-4 tracking-[0.5em] uppercase font-bold">Nexora Standards</div>
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-            {lang === 'ES' ? 'Tu ADN Digital de' : 'Your Digital DNA of'} <span className="text-blue-500">Elite</span>
+          {/* TITULAR RECTIFICADO: DOBLE ESPACIO (1.4) Y BALANCEADO */}
+          <h2 className="text-3xl md:text-[3.2rem] font-black text-white mb-6 uppercase leading-[1.4] tracking-tighter">
+            {lang === 'ES' ? 'TU ADN DIGITAL DE' : 'YOUR DIGITAL DNA OF'} <br/>
+            <span className="text-blue-500">ELITE</span>
           </h2>
           <p className="text-slate-400 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
             {lang === 'ES' 

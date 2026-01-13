@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { MessageSquare, FolderPlus, Rocket } from 'lucide-react';
 
@@ -31,29 +30,31 @@ export const Process: React.FC<ProcessProps> = ({ lang }) => {
   return (
     <section id="process" className="py-24 bg-[#050a14] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-20 reveal">
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
-            {lang === 'ES' ? 'Ingeniería en' : 'Engineering in'} <span className="text-blue-500">3 Fases</span>
+        <div className="text-center mb-24 reveal">
+          <div className="text-blue-500 font-mono text-[10px] mb-6 tracking-[0.5em] uppercase font-bold">NEXORA PROTOCOL</div>
+          {/* TITULAR RECTIFICADO: DOBLE ESPACIO (1.4) Y BALANCEADO AL 10X */}
+          <h2 className="text-3xl md:text-[3.4rem] font-black text-white mb-8 uppercase leading-[1.4] tracking-tighter">
+            {lang === 'ES' ? 'INGENIERÍA EN' : 'ENGINEERING IN'} <br/>
+            <span className="text-blue-500">{lang === 'ES' ? '3 FASES CRÍTICAS' : '3 CRITICAL PHASES'}</span>
           </h2>
           <div className="w-24 h-1 bg-blue-600/30 mx-auto rounded-full"></div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
-          {/* Conectores Visuales (Solo Desktop) */}
           <div className="hidden md:block absolute top-12 left-1/4 right-1/4 h-px bg-gradient-to-r from-transparent via-blue-500/20 to-transparent"></div>
           
           {steps.map((s, i) => (
             <div key={i} className="group relative text-center reveal" style={{ transitionDelay: `${i * 200}ms` }}>
               <div className="mb-8 relative inline-flex items-center justify-center">
-                 <div className="w-24 h-24 rounded-[2rem] bg-white/5 border border-white/10 flex items-center justify-center text-blue-500 group-hover:border-blue-500 group-hover:bg-blue-600/10 transition-all duration-500 transform group-hover:-translate-y-2 group-hover:rotate-6">
+                 <div className="w-24 h-24 rounded-[2rem] bg-white/5 border border-white/10 flex items-center justify-center text-blue-500 group-hover:border-blue-500 group-hover:bg-blue-600/10 transition-all duration-700 transform group-hover:-translate-y-2 group-hover:rotate-6">
                    {s.icon}
                  </div>
                  <div className="absolute -top-4 -right-4 w-10 h-10 rounded-full bg-blue-600 text-white font-mono font-black flex items-center justify-center text-sm shadow-xl">
                    {s.num}
                  </div>
               </div>
-              <h3 className="text-2xl font-bold text-white mb-4 tracking-tight">{s.title}</h3>
-              <p className="text-slate-400 leading-relaxed text-sm md:text-base max-w-xs mx-auto">{s.desc}</p>
+              <h3 className="text-xl font-black text-white mb-4 tracking-tighter uppercase">{s.title}</h3>
+              <p className="text-slate-400 leading-relaxed text-sm md:text-base max-w-xs mx-auto font-medium">{s.desc}</p>
             </div>
           ))}
         </div>

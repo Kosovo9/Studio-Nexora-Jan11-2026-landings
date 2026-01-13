@@ -30,7 +30,8 @@ export const Presentation: React.FC<PresentationProps> = ({ lang, currency, onRe
             <div className="inline-block px-4 py-1.5 rounded-full bg-blue-500/10 text-blue-400 text-xs font-bold tracking-[0.3em] border border-blue-500/20 uppercase">
               {lang === 'ES' ? 'Anatomía  de  tu  Éxito' : 'Anatomy  of  your  Success'}
             </div>
-            <h2 className="text-4xl md:text-6xl font-bold text-white leading-[2.5]">
+            {/* TITULAR RECTIFICADO: DOBLE ESPACIO (1.4) Y REDUCCIÓN 30% */}
+            <h2 className="text-3xl md:text-5xl font-black text-white leading-[1.4] uppercase tracking-tighter">
               {lang === 'ES' ? `Ingeniería  de  ${original}` : `${original}  Engineering`} <br />
               <span className="text-blue-500">
                 {lang === 'ES' ? `por  solo  ${promo}.00` : `for  only  ${promo}.00`}
@@ -39,7 +40,7 @@ export const Presentation: React.FC<PresentationProps> = ({ lang, currency, onRe
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               {includes.map((item, i) => (
-                <div key={i} className="flex items-center gap-5 p-6.5 glass rounded-2xl border border-white/5 hover:border-blue-500/30 transition-all duration-500 min-h-[90px]">
+                <div key={i} className="flex items-center gap-5 p-6 glass rounded-2xl border border-white/5 hover:border-blue-500/30 transition-all duration-500 min-h-[90px]">
                   <div className="text-blue-400 shrink-0">{item.icon}</div>
                   <span className="text-white text-[12px] font-black uppercase tracking-widest leading-tight">{item.text}</span>
                 </div>

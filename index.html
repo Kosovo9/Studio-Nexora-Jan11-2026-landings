@@ -32,6 +32,7 @@
             -moz-user-select: none;
             -ms-user-select: none;
             user-select: none;
+            box-sizing: border-box;
         }
 
         input, textarea {
@@ -44,32 +45,27 @@
             background-color: var(--nexora-navy);
             color: #ffffff;
             margin: 0;
-            overflow: hidden;
+            overflow-x: hidden;
         }
 
         #root:not(:empty) + #loader {
             display: none;
         }
 
-        #root:not(:empty) {
-            overflow: visible;
-        }
-
         body.loaded {
-            overflow-x: hidden;
             overflow-y: auto;
         }
 
         .monolith-text {
-            font-size: clamp(2.2rem, 7vw, 6.2rem);
-            line-height: 0.82; 
+            /* REDUCCIÓN 30% Y DOBLE ESPACIO 1.4 */
+            font-size: clamp(2.2rem, 7vw, 4rem);
+            line-height: 1.4; 
             font-weight: 900;
             text-transform: uppercase;
             text-align: center;
             letter-spacing: -0.02em;
         }
 
-        /* Restauración de las Ráfagas de Oro (Double Shimmer) */
         @keyframes shimmer-sweep {
             0% { background-position: -200% center; }
             100% { background-position: 200% center; }
@@ -151,7 +147,6 @@
             to { transform: rotate(360deg); }
         }
 
-        /* Custom Scrollbar Elite */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #030711; }
         ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }

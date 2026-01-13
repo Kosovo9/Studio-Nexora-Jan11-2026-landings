@@ -50,8 +50,8 @@ export const Hero: React.FC<HeroProps> = ({ lang, currency, onLaunchClick }) => 
           </div>
         </div>
 
-        {/* TITULAR MONOLITO */}
-        <div className="monolith-text mb-12 w-full flex flex-col items-center space-y-2">
+        {/* TITULAR MONOLITO RECTIFICADO EN INDEX.HTML */}
+        <div className="monolith-text mb-12 w-full flex flex-col items-center">
           <div className="text-white reveal" style={{ transitionDelay: '300ms' }}>
             {lang === 'ES' ? 'ESTRENA TU' : 'LAUNCH YOUR'}
           </div>
@@ -60,7 +60,7 @@ export const Hero: React.FC<HeroProps> = ({ lang, currency, onLaunchClick }) => 
           </div>
         </div>
 
-        {/* CTA BUTTON - Reducción final confirmada (-20%) */}
+        {/* CTA BUTTON */}
         <div className="reveal mb-12" style={{ transitionDelay: '600ms' }}>
            <button 
              onClick={onLaunchClick}
@@ -97,7 +97,7 @@ export const Hero: React.FC<HeroProps> = ({ lang, currency, onLaunchClick }) => 
                   {priceMain}.00
                 </h2>
               </div>
-              <div className="flex items-center overflow-visible ml-6 md:ml-10">
+              <div className="flex items-center overflow-visible ml-6 md:md-10">
                 <span className="text-slate-500/30 font-black text-xl md:text-5xl translate-y-6 md:translate-y-12 tracking-tighter uppercase">+{currency}</span>
               </div>
             </div>

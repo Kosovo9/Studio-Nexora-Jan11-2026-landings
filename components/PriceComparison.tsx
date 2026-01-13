@@ -34,20 +34,21 @@ export const PriceComparison: React.FC<PriceComparisonProps> = ({ lang, currency
     <section id="pricing" className="py-32 bg-[#030711] relative overflow-hidden border-t border-white/5">
       <div className="max-w-[1300px] mx-auto px-6">
         
-        <div className="flex flex-col md:flex-row justify-between items-end mb-32 gap-8 reveal">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-8 reveal">
            <div className="max-w-2xl">
-              <h2 className="text-white font-black text-[14px] uppercase tracking-[0.5em] mb-10 flex items-center gap-3">
+              <h2 className="text-white font-black text-[11px] uppercase tracking-[0.4em] mb-8 flex items-center gap-3">
                 <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></div>
                 {lang === 'ES' ? 'ANÁLISIS DE MERCADO 2026' : '2026 MARKET ANALYSIS'}
               </h2>
-              <p className="text-4xl md:text-6xl font-black text-white uppercase leading-[1.1] tracking-tighter">
+              {/* TITULAR RECTIFICADO: DOBLE ESPACIO (1.4) Y BALANCEADO */}
+              <p className="text-3xl md:text-[2.8rem] font-black text-white uppercase leading-[1.4] tracking-tighter">
                 {lang === 'ES' ? 'VALOR REAL DE TU' : 'REAL VALUE OF YOUR'} <br/>
                 <span className="text-blue-500">{lang === 'ES' ? 'INGENIERÍA' : 'ENGINEERING'}</span>
               </p>
            </div>
            <div className="flex items-center gap-6 bg-white/5 border border-white/10 px-8 py-5 rounded-2xl backdrop-blur-xl">
               <TrendingDown className="text-green-500" size={24} />
-              <p className="text-[13px] font-black text-slate-400 uppercase tracking-widest leading-relaxed">
+              <p className="text-[11px] font-black text-slate-400 uppercase tracking-widest leading-relaxed">
                 {lang === 'ES' ? '90% MÁS ACCESIBLE QUE' : '90% MORE ACCESSIBLE THAN'} <br/>
                 {lang === 'ES' ? 'AGENCIAS TRADICIONALES' : 'TRADITIONAL AGENCIES'}
               </p>
@@ -55,68 +56,70 @@ export const PriceComparison: React.FC<PriceComparisonProps> = ({ lang, currency
         </div>
 
         <div className="glass rounded-[3rem] border border-white/5 overflow-hidden shadow-[0_40px_100px_rgba(0,0,0,0.6)] relative reveal">
-          <table className="w-full text-left">
-            <thead>
-              <tr className="border-b border-white/5 bg-white/[0.01]">
-                <th className="px-12 py-12 text-[13px] font-black text-slate-500 uppercase tracking-[0.3em]">
-                  {lang === 'ES' ? 'REGIÓN' : 'REGION'}
-                </th>
-                <th className="px-12 py-12 text-[13px] font-black text-slate-500 uppercase tracking-[0.3em]">
-                  {lang === 'ES' ? 'PRECIO MERCADO (USD)' : 'MARKET PRICE (USD)'}
-                </th>
-                <th className="px-12 py-12 text-[13px] font-black text-blue-500 uppercase tracking-[0.3em] text-right">
-                  {lang === 'ES' ? 'PRECIO NEXORA (PROMO)' : 'NEXORA PRICE (PROMO)'}
-                </th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-white/5">
-              {rows.map((row, idx) => (
-                <tr key={idx} className="group hover:bg-white/[0.02] transition-all duration-500">
-                  <td className="px-12 py-10">
-                    <div className="flex items-center gap-5">
-                      <Globe2 size={20} className="text-slate-600 group-hover:text-blue-500 transition-colors" />
-                      <span className="text-lg md:text-2xl font-black text-white uppercase tracking-tighter group-hover:translate-x-3 transition-transform">
-                        {row.region}
-                      </span>
-                    </div>
-                  </td>
-                  <td className="px-12 py-10">
-                    <span className="text-lg md:text-xl font-bold text-slate-500 italic tracking-tight opacity-80">
-                      {row.market}
-                    </span>
-                  </td>
-                  <td className="px-12 py-10 text-right">
-                    <div className="inline-flex flex-col items-end">
-                      <div className="flex items-center">
-                         <span className="text-metallic-gold text-xl md:text-3xl font-black mr-2">$</span>
-                         <span className="text-4xl md:text-7xl font-black text-metallic-gold tracking-tighter drop-shadow-[0_0_25px_rgba(234,179,8,0.3)]">
-                           {nexoraPrice}
-                         </span>
-                      </div>
-                      <span className="text-[13px] font-black text-slate-600 tracking-[0.4em] uppercase mt-1">
-                        {nexoraLabel}
-                      </span>
-                    </div>
-                  </td>
+          <div className="overflow-x-auto">
+            <table className="w-full text-left min-w-[600px]">
+              <thead>
+                <tr className="border-b border-white/5 bg-white/[0.01]">
+                  <th className="px-12 py-10 text-[11px] font-black text-slate-500 uppercase tracking-[0.3em]">
+                    {lang === 'ES' ? 'REGIÓN' : 'REGION'}
+                  </th>
+                  <th className="px-12 py-10 text-[11px] font-black text-slate-500 uppercase tracking-[0.3em]">
+                    {lang === 'ES' ? 'PRECIO MERCADO (USD)' : 'MARKET PRICE (USD)'}
+                  </th>
+                  <th className="px-12 py-10 text-[11px] font-black text-blue-500 uppercase tracking-[0.3em] text-right">
+                    {lang === 'ES' ? 'PRECIO NEXORA (PROMO)' : 'NEXORA PRICE (PROMO)'}
+                  </th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody className="divide-y divide-white/5">
+                {rows.map((row, idx) => (
+                  <tr key={idx} className="group hover:bg-white/[0.02] transition-all duration-500">
+                    <td className="px-12 py-8">
+                      <div className="flex items-center gap-5">
+                        <Globe2 size={18} className="text-slate-600 group-hover:text-blue-500 transition-colors" />
+                        <span className="text-lg md:text-xl font-black text-white uppercase tracking-tighter group-hover:translate-x-3 transition-transform">
+                          {row.region}
+                        </span>
+                      </div>
+                    </td>
+                    <td className="px-12 py-8">
+                      <span className="text-sm md:text-base font-bold text-slate-500 italic tracking-tight opacity-80">
+                        {row.market}
+                      </span>
+                    </td>
+                    <td className="px-12 py-8 text-right">
+                      <div className="inline-flex flex-col items-end">
+                        <div className="flex items-center">
+                           <span className="text-metallic-gold text-lg md:text-2xl font-black mr-2">$</span>
+                           <span className="text-3xl md:text-5xl font-black text-metallic-gold tracking-tighter drop-shadow-[0_0_25px_rgba(234,179,8,0.3)]">
+                             {nexoraPrice}
+                           </span>
+                        </div>
+                        <span className="text-[11px] font-black text-slate-600 tracking-[0.4em] uppercase mt-1">
+                          {nexoraLabel}
+                        </span>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
 
-          <div className="p-12 bg-blue-600/[0.03] border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-10">
+          <div className="p-10 bg-blue-600/[0.03] border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-10">
              <div className="flex items-center gap-5">
-               <ShieldCheck className="text-blue-500" size={28} />
-               <p className="text-[14px] font-black text-slate-400 uppercase tracking-[0.2em]">
+               <ShieldCheck className="text-blue-500" size={24} />
+               <p className="text-[12px] font-black text-slate-400 uppercase tracking-[0.2em]">
                  {lang === 'ES' ? 'ESTÁNDARES DE CALIDAD MUNDIAL ASEGURADOS' : 'WORLD QUALITY STANDARDS SECURED'}
                </p>
              </div>
              <div className="flex -space-x-4">
                {[1,2,3,4,5].map(i => (
-                 <div key={i} className="w-12 h-12 rounded-full border-2 border-[#030711] bg-slate-800 overflow-hidden">
+                 <div key={i} className="w-10 h-10 rounded-full border-2 border-[#030711] bg-slate-800 overflow-hidden">
                    <img src={`https://i.pravatar.cc/100?img=${i+15}`} alt="user" className="w-full h-full object-cover grayscale" />
                  </div>
                ))}
-               <div className="w-12 h-12 rounded-full border-2 border-[#030711] bg-blue-600 flex items-center justify-center text-[11px] font-black text-white">
+               <div className="w-10 h-10 rounded-full border-2 border-[#030711] bg-blue-600 flex items-center justify-center text-[10px] font-black text-white">
                  +12
                </div>
              </div>

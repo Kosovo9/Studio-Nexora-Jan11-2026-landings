@@ -22,7 +22,7 @@ export const ResponsiveShowcase: React.FC<ResponsiveShowcaseProps> = ({ lang }) 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="flex flex-col items-center text-center">
           
-          {/* Titular Superior de Alto Impacto */}
+          {/* Titular Superior de Alto Impacto Ajustado */}
           <div className="reveal mb-20">
             <div className="inline-flex items-center gap-3 px-6 py-2 bg-blue-600/10 border border-blue-500/30 rounded-full mb-8 animate-flash-elite">
                <Zap size={14} className="text-blue-500 fill-blue-500" />
@@ -31,7 +31,8 @@ export const ResponsiveShowcase: React.FC<ResponsiveShowcaseProps> = ({ lang }) 
                </span>
             </div>
             
-            <h2 className="text-3xl md:text-6xl font-black text-white uppercase tracking-tighter leading-[1.1] mb-8">
+            {/* TITULAR RECTIFICADO: DOBLE ESPACIO (1.4) Y BALANCEADO AL 30% */}
+            <h2 className="text-3xl md:text-[3.6rem] font-black text-white uppercase tracking-tighter leading-[1.4] mb-8">
               {lang === 'ES' ? 'VENDE EN CUALQUIER' : 'SELL ON EVERY'} <br/>
               <span className="text-metallic-gold">{lang === 'ES' ? 'DIMENSIÓN DIGITAL' : 'DIGITAL DIMENSION'}</span>
             </h2>

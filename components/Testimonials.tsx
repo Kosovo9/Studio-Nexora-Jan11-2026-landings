@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Star, Quote } from 'lucide-react';
 
@@ -38,37 +37,38 @@ export const Testimonials: React.FC<TestimonialsProps> = ({ lang }) => {
   ];
 
   return (
-    <section id="testimonials" className="py-24 bg-[#050a14] relative">
+    <section id="testimonials" className="py-32 bg-[#050a14] relative border-t border-white/5">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16 reveal">
-          <div className="inline-block px-4 py-1.5 rounded-full bg-blue-500/10 text-blue-400 text-[10px] font-bold tracking-[0.3em] border border-blue-500/20 mb-4 uppercase">
+        <div className="text-center mb-24 reveal">
+          <div className="inline-block px-4 py-1.5 rounded-full bg-blue-500/10 text-blue-400 text-[10px] font-black tracking-[0.3em] border border-blue-500/20 mb-8 uppercase">
             {lang === 'ES' ? 'Voz de nuestros Socios' : 'Voice of our Partners'}
           </div>
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-            {lang === 'ES' ? 'Resultados que' : 'Results that'} <span className="text-metallic-gold">Hablan</span>
+          {/* TITULAR RECTIFICADO: DOBLE ESPACIO (1.4) */}
+          <h2 className="text-3xl md:text-[3.2rem] font-black text-white mb-8 uppercase leading-[1.4] tracking-tighter">
+            {lang === 'ES' ? 'RESULTADOS QUE' : 'RESULTS THAT'} <br/>
+            <span className="text-metallic-gold">{lang === 'ES' ? 'HABLAN POR SÍ MISMOS' : 'SPEAK FOR THEMSELVES'}</span>
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 reveal" style={{ transitionDelay: '200ms' }}>
           {testimonials.map((t, i) => (
             <div 
               key={i} 
-              className="group glass p-8 rounded-[2.5rem] border border-white/5 hover:border-blue-500/30 transition-all duration-700 reveal"
-              style={{ transitionDelay: `${i * 200}ms` }}
+              className="group glass p-10 rounded-[3rem] border border-white/5 hover:border-blue-500/30 transition-all duration-700 shadow-2xl"
             >
-              <div className="flex gap-1 text-amber-500 mb-6">
+              <div className="flex gap-1 text-amber-500 mb-8">
                 {[...Array(5)].map((_, j) => <Star key={j} size={14} fill="currentColor" />)}
               </div>
               
-              <div className="relative mb-8">
-                <Quote size={40} className="text-blue-500/10 absolute -top-4 -left-4" />
-                <p className="text-slate-400 text-sm leading-relaxed italic relative z-10">
+              <div className="relative mb-10">
+                <Quote size={50} className="text-blue-500/10 absolute -top-6 -left-6" />
+                <p className="text-slate-400 text-sm md:text-base leading-[1.8] italic relative z-10 font-medium">
                   "{t.text}"
                 </p>
               </div>
 
-              <div className="flex items-center gap-4 mt-auto">
-                <div className="w-12 h-12 rounded-2xl overflow-hidden border border-white/10">
+              <div className="flex items-center gap-5 mt-auto pt-8 border-t border-white/5">
+                <div className="w-16 h-16 rounded-[1.5rem] overflow-hidden border border-white/10 group-hover:border-blue-500/50 transition-all duration-700">
                   <img 
                     src={t.img} 
                     alt={t.name} 
@@ -76,8 +76,8 @@ export const Testimonials: React.FC<TestimonialsProps> = ({ lang }) => {
                   />
                 </div>
                 <div>
-                  <h4 className="text-white font-bold text-sm tracking-tight">{t.name}</h4>
-                  <p className="text-blue-500 text-[10px] font-bold uppercase tracking-widest">{t.role}</p>
+                  <h4 className="text-white font-black text-base tracking-tight uppercase">{t.name}</h4>
+                  <p className="text-blue-500 text-[10px] font-black uppercase tracking-[0.3em] mt-1">{t.role}</p>
                 </div>
               </div>
             </div>

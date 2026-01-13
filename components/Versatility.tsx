@@ -55,7 +55,7 @@ export const Versatility: React.FC<VersatilityProps> = ({ lang, referralCode }) 
     <section id="versatility" className="py-24 bg-[#030711] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-20 reveal">
-          <h2 className="text-3xl md:text-5xl font-black text-white mb-6 uppercase tracking-tighter">
+          <h2 className="text-3xl md:text-5xl font-black text-white mb-6 uppercase tracking-tighter leading-[1.4]">
             {lang === 'ES' ? 'CUALQUIER GIRO,' : 'ANY BUSINESS,'} <br/>
             <span className="text-metallic-gold">{lang === 'ES' ? 'INGENIERÍA SIN LÍMITES' : 'LIMITLESS ENGINEERING'}</span>
           </h2>
@@ -82,24 +82,28 @@ export const Versatility: React.FC<VersatilityProps> = ({ lang, referralCode }) 
           ))}
         </div>
 
-        <div className="mt-40 reveal">
-          <div className="glass p-12 rounded-[3rem] border-2 border-blue-500/20 bg-blue-600/5 text-center relative overflow-hidden">
+        <div className="mt-32 reveal">
+          <div className="glass p-10 rounded-[2.5rem] border-2 border-blue-500/20 bg-blue-600/5 text-center relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-50"></div>
-            <h3 className="text-2xl md:text-5xl font-black text-white mb-16 uppercase tracking-tight leading-[1.1]">
+            
+            {/* TITULAR RECTIFICADO: DOBLE ESPACIO (1.4) Y BALANCEADO AL 30% */}
+            <h3 className="text-xl md:text-[2.2rem] font-black text-white mb-10 uppercase tracking-tight leading-[1.4]">
               {lang === 'ES' ? '¿Listo para dominar tu mercado?' : 'Ready to dominate your market?'}
             </h3>
+            
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
               <a 
                 href={waLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto px-20 py-10 bg-blue-600 text-white font-black rounded-[2.5rem] uppercase tracking-[0.4em] text-[14px] shadow-[0_40px_80px_rgba(37,99,235,0.4)] hover:bg-blue-500 transition-all active:scale-95 flex items-center justify-center gap-6 border border-white/20"
+                className="w-full sm:w-auto px-14 py-7 bg-blue-600 text-white font-black rounded-[1.8rem] uppercase tracking-[0.3em] text-[11px] shadow-[0_30px_60px_rgba(37,99,235,0.3)] hover:bg-blue-500 transition-all active:scale-95 flex items-center justify-center gap-4 border border-white/20"
               >
                 {lang === 'ES' ? 'SOLICITAR MI LANDING ELITE' : 'REQUEST MY ELITE LANDING'}
-                <ArrowRight size={24} />
+                <ArrowRight size={18} />
               </a>
             </div>
-            <p className="mt-16 text-[10px] text-slate-500 font-bold uppercase tracking-[0.6em]">
+            
+            <p className="mt-10 text-[9px] text-slate-600 font-bold uppercase tracking-[0.5em]">
               {lang === 'ES' ? 'Entrega garantizada en 24 horas • Sin anticipo inicial' : 'Guaranteed 24-hour delivery • No upfront payment'}
             </p>
           </div>

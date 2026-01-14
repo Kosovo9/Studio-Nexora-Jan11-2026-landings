@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { PriceComparison } from './components/PriceComparison';
+import { NicheBlueprints } from './components/NicheBlueprints';
 import { Presentation } from './components/Presentation';
 import { Features } from './components/Features';
 import { Ecosystem } from './components/Ecosystem';
@@ -104,6 +105,7 @@ const App: React.FC = () => {
           
           <Hero lang={lang} currency={currency} onLaunchClick={openCheckout} />
           <PriceComparison lang={lang} currency={currency} />
+          <NicheBlueprints lang={lang} onActionClick={openCheckout} />
           <Presentation lang={lang} currency={currency} referralCode={referralCode} onReserveClick={openCheckout} />
           <Features lang={lang} />
           <Ecosystem lang={lang} />

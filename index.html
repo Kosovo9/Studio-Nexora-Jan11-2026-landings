@@ -1,69 +1,34 @@
+
 <!DOCTYPE html>
 <html lang="es" style="scroll-behavior: smooth; scroll-padding-top: 96px;">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STUDIO NEXORA | Elite Digital Identities & 24h Landing Pages</title>
+    <title>STUDIO NEXORA | Identidades Digitales de Lujo</title>
     
-    <!-- Build Signature: v1.1.5-PRODUCTION-STABLE -->
-    <meta name="description" content="Socio Nexora: Ingeniería digital de alto impacto. Landings Elite con entrega en 24h, tecnología dual-language y arquitectura ultra-fluida. Estrena hoy sin anticipo.">
-    <meta name="keywords" content="landing page elite, diseño web lujo, studio nexora, studio-nexora.com, digital identity, high-end web development, 24h delivery web">
-    <meta property="og:title" content="STUDIO NEXORA | Elite Digital Identities">
-    <meta property="og:description" content="Landings Elite con entrega en 24h. Tecnología dual-language y arquitectura ultra-fluida.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://studio-nexora.com">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200">
+    <!-- Build Signature: v1.2.0-BOUTIQUE-EDITION -->
+    <meta name="description" content="Studio Nexora: Transformamos negocios locales en marcas de élite. Landings de alto impacto con entrega en 24h. Proyecta autoridad y multiplica tus ventas hoy.">
     
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      "serviceType": "High-End Web Development",
-      "provider": {
-        "@type": "LocalBusiness",
-        "name": "Studio Nexora",
-        "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200",
-        "priceRange": "$$$",
-        "url": "https://studio-nexora.com",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Global",
-          "addressCountry": "MX"
-        }
-      },
-      "name": "Landing Page Elite 24h",
-      "description": "Desarrollo premium de identidades digitales con entrega garantizada en 24 horas y arquitectura bilingüe optimizada para conversión.",
-      "offers": {
-        "@type": "Offer",
-        "priceCurrency": "MXN",
-        "price": "2999.00"
-      }
-    }
-    </script>
-
-    <link rel="manifest" href="/metadata.json">
-    <link rel="apple-touch-icon" href="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=192">
-    <meta name="theme-color" content="#030711">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
 
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
     
     <style>
         :root {
             --nexora-navy: #030711;
-            --nexora-gold-top: #fefce8;
-            --nexora-gold-bottom: #eab308;
-            --nexora-orange: #f59e0b;
+            --nexora-gold: #eab308;
+            --nexora-soft-gold: #fefce8;
         }
         
         * {
             box-sizing: border-box;
             -webkit-tap-highlight-color: transparent;
-            text-rendering: optimizeLegibility;
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Inter', sans-serif;
             background-color: var(--nexora-navy);
             color: #ffffff;
             margin: 0;
@@ -71,26 +36,8 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        #root:not(:empty) + #loader {
-            display: none;
-        }
-
-        body.loaded {
-            overflow-y: auto;
-        }
-
-        .monolith-text {
-            font-size: clamp(2.2rem, 7vw, 4.5rem);
-            line-height: 1.1; 
-            font-weight: 900;
-            text-transform: uppercase;
-            text-align: center;
-            letter-spacing: -0.04em;
-        }
-
-        @keyframes shimmer-sweep {
-            0% { background-position: -200% center; }
-            100% { background-position: 200% center; }
+        h1, h2, h3, .luxury-serif {
+            font-family: 'Playfair Display', serif;
         }
 
         .text-metallic-gold {
@@ -106,13 +53,17 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: shimmer-sweep 4s linear infinite;
-            filter: drop-shadow(0 0 15px rgba(234, 179, 8, 0.2));
+        }
+
+        @keyframes shimmer-sweep {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
         }
 
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
         }
         .reveal.active {
             opacity: 1;
@@ -120,23 +71,9 @@
         }
 
         .glass {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.015);
+            backdrop-filter: blur(24px);
             border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .luxury-strike {
-            text-decoration: line-through;
-            text-decoration-color: #ef4444;
-            text-decoration-thickness: 4px;
-        }
-
-        @keyframes blink-urgent {
-            0%, 100% { opacity: 1; filter: brightness(1); }
-            50% { opacity: 0.3; filter: brightness(1.4); }
-        }
-        .animate-blink-urgent {
-            animation: blink-urgent 0.8s infinite cubic-bezier(0.4, 0, 0.6, 1);
         }
 
         #loader {
@@ -144,22 +81,31 @@
             inset: 0;
             background: #030711;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
             z-index: 9999;
-            transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .btn-luxury {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+        .btn-luxury::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+        .btn-luxury:hover::after {
+            left: 100%;
         }
 
         ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-track { background: #030711; }
         ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: #3b82f6; }
-
-        .ai-manifesto {
-            display: none;
-            visibility: hidden;
-        }
     </style>
 <script type="importmap">
 {
@@ -177,17 +123,8 @@
 </script>
 </head>
 <body>
-    <div class="ai-manifesto">
-      Nexora Studio: High-performance digital identity boutique. 
-      Authorized Domain: studio-nexora.com
-      Build Status: Stable Production
-    </div>
-
     <div id="loader">
-        <div style="display: flex; flex-direction: column; align-items: center; gap: 32px;">
-            <div style="width: 40px; height: 40px; border: 2px solid rgba(37, 99, 235, 0.1); border-top: 2px solid #2563eb; border-radius: 50%; animation: spin 0.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;"></div>
-            <p style="color: #1e3a8a; font-size: 9px; font-weight: 900; letter-spacing: 0.8em; text-transform: uppercase; text-indent: 0.8em;">Nexora OS 2026</p>
-        </div>
+        <div class="luxury-serif text-white text-2xl italic tracking-widest animate-pulse">Nexora</div>
     </div>
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
@@ -200,24 +137,17 @@
         
         setInterval(() => {
             document.querySelectorAll('.reveal:not(.active)').forEach(el => observer.observe(el));
-        }, 800);
+        }, 500);
 
         const checkRoot = setInterval(() => {
             const root = document.getElementById('root');
             if (root && root.innerHTML !== "") {
                 const loader = document.getElementById('loader');
                 if (loader) loader.style.opacity = '0';
-                setTimeout(() => {
-                    if (loader) loader.style.display = 'none';
-                    document.body.classList.add('loaded');
-                }, 800);
+                setTimeout(() => { if (loader) loader.style.display = 'none'; }, 800);
                 clearInterval(checkRoot);
             }
         }, 100);
-
-        window.addEventListener('load', () => {
-          window.scrollTo(0,0);
-        });
     </script>
 </body>
 </html>

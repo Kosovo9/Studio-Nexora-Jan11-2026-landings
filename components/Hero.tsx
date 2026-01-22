@@ -1,5 +1,6 @@
+
 import React from 'react';
-import { Zap, Lightbulb, ArrowRight } from 'lucide-react';
+import { ArrowRight, Sparkles, ShieldCheck } from 'lucide-react';
 import { EliteParticles } from './EliteParticles';
 
 interface HeroProps {
@@ -9,94 +10,67 @@ interface HeroProps {
 }
 
 export const Hero: React.FC<HeroProps> = ({ lang, currency, onLaunchClick }) => {
-  const priceMain = currency === 'MXN' ? "2,999" : "165";
-  const originalPriceValue = currency === 'MXN' ? "9,000.00" : "500.00";
-  
-  const promoText = lang === 'ES' 
-    ? 'LANZAMIENTO: 13/01/2026 • FINALIZA: 20/01/2026'
-    : 'LAUNCH: 01/13/2026 • ENDS: 01/20/2026';
+  const price = currency === 'MXN' ? "2,999" : "165";
   
   return (
-    <section id="hero" className="relative min-h-screen flex flex-col items-center justify-start pt-40 pb-16 px-4 overflow-hidden bg-[#030711]">
+    <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center pt-20 pb-16 px-4 overflow-hidden bg-[#030711]">
       <EliteParticles />
       
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-blue-600/[0.04] blur-[150px] pointer-events-none"></div>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-blue-600/[0.02] blur-[150px] pointer-events-none"></div>
       
-      <div className="max-w-[1100px] mx-auto text-center relative z-10 flex flex-col items-center w-full">
+      <div className="max-w-5xl mx-auto text-center relative z-10 flex flex-col items-center">
         
-        <div className="flex justify-center mb-8 reveal">
-          <div className="inline-flex items-center gap-4 px-6 py-2.5 bg-white/[0.03] border border-white/10 rounded-full backdrop-blur-xl">
-             <div className="flex items-center gap-2">
-               <span className="text-[10px] font-black tracking-[0.2em] text-white uppercase">9 PROYECTOS EN CURSO</span>
-               <div className="w-2 h-2 rounded-full bg-blue-500 shadow-[0_0_12px_#3b82f6]"></div>
-             </div>
-             <div className="w-px h-3.5 bg-white/20"></div>
-             <div className="flex items-center gap-2">
-               <Lightbulb size={13} className="text-amber-500 animate-pulse" aria-hidden="true" />
-               <span className="text-[10px] font-bold text-white tracking-widest uppercase italic">TEMPORADA 2026</span>
-             </div>
-          </div>
-        </div>
-
-        <div className="flex justify-center mb-12 reveal" style={{ transitionDelay: '100ms' }}>
-          <div className="px-10 py-3.5 rounded-full border border-blue-500/20 bg-blue-500/5 flex items-center gap-3 animate-blink-urgent">
-            <Zap size={14} className="text-blue-500 fill-blue-500/20" aria-hidden="true" />
-            <span className="text-blue-400 text-[11px] md:text-[13px] font-black uppercase tracking-[0.3em]">
-              {promoText}
+        <div className="reveal mb-8">
+          <div className="inline-flex items-center gap-3 px-6 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md">
+            <Sparkles size={14} className="text-amber-500" />
+            <span className="text-[10px] font-semibold tracking-[0.3em] text-slate-300 uppercase">
+              {lang === 'ES' ? 'Boutique de Diseño Digital de Élite' : 'Elite Digital Design Boutique'}
             </span>
           </div>
         </div>
 
-        <div className="monolith-text mb-12 w-full flex flex-col items-center">
-          <h1 className="sr-only">Studio Nexora - Estrena tu Landing Elite</h1>
-          <div className="text-white reveal" style={{ transitionDelay: '300ms' }}>
-            {lang === 'ES' ? 'ESTRENA TU' : 'LAUNCH YOUR'}
-          </div>
-          <div className="text-metallic-gold reveal" style={{ transitionDelay: '500ms' }}>
-            {lang === 'ES' ? 'LANDING ELITE' : 'ELITE LANDING'}
+        <h1 className="reveal text-white mb-6 leading-[1.1] tracking-tighter">
+          <span className="block text-4xl md:text-6xl font-light italic mb-2 luxury-serif">
+            {lang === 'ES' ? 'Tu negocio es grande,' : 'Your business is big,'}
+          </span>
+          <span className="block text-5xl md:text-8xl font-black uppercase text-metallic-gold">
+            {lang === 'ES' ? 'HAZ QUE SE NOTE.' : 'MAKE IT SHOW.'}
+          </span>
+        </h1>
+
+        <p className="reveal text-slate-400 text-lg md:text-xl max-w-2xl mx-auto mb-12 font-light leading-relaxed">
+          {lang === 'ES' 
+            ? 'Deja de perder clientes por respuestas tardías en WhatsApp. Creamos tu identidad digital de lujo en 24h para que proyectes autoridad y cierres ventas en automático.' 
+            : 'Stop losing clients to late WhatsApp replies. We create your luxury digital identity in 24h so you project authority and close sales automatically.'}
+        </p>
+
+        <div className="reveal flex flex-col sm:flex-row items-center gap-6 mb-16">
+          <button 
+            onClick={onLaunchClick}
+            className="btn-luxury group px-12 py-5 bg-white text-black font-black text-xs uppercase tracking-[0.2em] rounded-full shadow-2xl hover:scale-105 active:scale-95 transition-all flex items-center gap-3"
+          >
+            {lang === 'ES' ? 'QUIERO MI DISEÑO DE ÉLITE' : 'GET MY ELITE DESIGN'}
+            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+          </button>
+          
+          <div className="flex items-center gap-2 text-[10px] font-bold text-slate-500 uppercase tracking-widest">
+            <ShieldCheck size={16} className="text-blue-500" />
+            {lang === 'ES' ? 'Sin anticipo. Primero lo ves, luego pagas.' : 'No upfront. See it first, then pay.'}
           </div>
         </div>
 
-        <div className="reveal mb-12" style={{ transitionDelay: '600ms' }}>
-           <button 
-             onClick={onLaunchClick}
-             className="group relative px-11 py-5 bg-blue-600 text-white font-black text-[10px] md:text-[12px] uppercase tracking-[0.35em] rounded-[1.8rem] shadow-2xl shadow-blue-600/30 hover:bg-blue-500 hover:scale-105 active:scale-95 transition-all flex items-center gap-3 border border-white/20"
-           >
-             {lang === 'ES' ? 'CONFIGURAR Y LANZAR' : 'CONFIGURE & LAUNCH'}
-             <ArrowRight size={16} className="group-hover:translate-x-1.5 transition-transform" />
-             <div className="absolute inset-0 rounded-[1.8rem] border-4 border-white/10 scale-110 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all"></div>
-           </button>
-        </div>
-
-        <div className="flex flex-col items-center w-full">
-          <div className="reveal mb-8 flex justify-center w-full" style={{ transitionDelay: '700ms' }}>
-            <span className="luxury-strike text-slate-400 text-lg md:text-2xl font-black italic tracking-tighter opacity-80 uppercase leading-none block">
-              {lang === 'ES' ? `VALOR REAL: $${originalPriceValue} +${currency}` : `REAL VALUE: $${originalPriceValue} +${currency}`}
-            </span>
-          </div>
-          
-          <div className="reveal mb-2" style={{ transitionDelay: '850ms' }}>
-            <p className="text-[10px] md:text-[12px] text-slate-400 font-black tracking-[0.4em] uppercase">
-              {lang === 'ES' ? 'Precio Exclusivo Socio Nexora' : 'Socio Nexora Exclusive Price'}
-            </p>
-          </div>
-          
-          <div className="reveal w-full flex justify-center items-center" style={{ transitionDelay: '1000ms' }}>
-            <div className="flex items-center justify-center">
-              <div className="flex items-center overflow-visible mr-6 md:mr-10">
-                <span className="text-metallic-gold font-black text-xl md:text-4xl opacity-80 -translate-y-6 md:-translate-y-12" aria-hidden="true">$</span>
-                <span className="text-slate-600 font-light text-2xl md:text-5xl ml-1 md:ml-4 -translate-y-5 md:-translate-y-10 italic" aria-hidden="true">/</span>
-              </div>
-              <div className="flex flex-col items-center">
-                <h2 className="text-metallic-gold font-black !leading-[0.8] text-[4rem] md:text-[7.6rem] tracking-tighter drop-shadow-[0_0_60px_rgba(234,179,8,0.4)]">
-                  {priceMain}.00
-                </h2>
-              </div>
-              <div className="flex items-center overflow-visible ml-6 md:ml-10">
-                <span className="text-slate-400 font-black text-lg md:text-4xl translate-y-5 md:translate-y-10 tracking-tighter uppercase">+{currency}</span>
-              </div>
-            </div>
-          </div>
+        <div className="reveal flex flex-col items-center">
+           <div className="flex items-baseline gap-2">
+             <span className="text-slate-500 line-through text-xl md:text-2xl font-light italic">
+               {currency === 'MXN' ? '$9,000' : '$500'}
+             </span>
+             <span className="text-white text-4xl md:text-7xl font-black tracking-tighter luxury-serif">
+               ${price}.00 <span className="text-sm md:text-lg text-blue-500 font-black tracking-widest uppercase">+{currency}</span>
+             </span>
+           </div>
+           <p className="text-[10px] text-blue-400 font-bold uppercase tracking-[0.4em] mt-4 italic">
+             {lang === 'ES' ? 'OFERTA LIMITADA PARA NUEVOS SOCIOS' : 'LIMITED OFFER FOR NEW PARTNERS'}
+           </p>
         </div>
 
       </div>

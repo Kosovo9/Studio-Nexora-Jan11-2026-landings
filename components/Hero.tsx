@@ -1,7 +1,7 @@
 
 import React from 'react';
-import { ArrowRight, Sparkles, ShieldCheck } from 'lucide-react';
-import { EliteParticles } from './EliteParticles';
+import { ArrowRight, ShieldCheck, CheckCircle2, Calendar } from 'lucide-react';
+import { DOMAIN_START_MXN, DOMAIN_START_USD } from '../constants';
 
 interface HeroProps {
   lang: 'ES' | 'EN';
@@ -13,66 +13,70 @@ export const Hero: React.FC<HeroProps> = ({ lang, currency, onLaunchClick }) => 
   const price = currency === 'MXN' ? "2,999" : "165";
   
   return (
-    <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center pt-20 pb-16 px-4 overflow-hidden bg-[#030711]">
-      <EliteParticles />
+    <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center pt-32 pb-10 px-6 overflow-hidden bg-transparent">
+      {/* El fondo ahora es gestionado globalmente por App.tsx */}
       
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-blue-600/[0.02] blur-[150px] pointer-events-none"></div>
-      
-      <div className="max-w-5xl mx-auto text-center relative z-10 flex flex-col items-center">
+      <div className="max-w-6xl mx-auto text-center relative z-10">
         
-        <div className="reveal mb-8">
-          <div className="inline-flex items-center gap-3 px-6 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md">
-            <Sparkles size={14} className="text-amber-500" />
-            <span className="text-[10px] font-semibold tracking-[0.3em] text-slate-300 uppercase">
-              {lang === 'ES' ? 'Boutique de Diseño Digital de Élite' : 'Elite Digital Design Boutique'}
+        <div className="reveal mb-6">
+          <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full border border-[#c5a059]/40 bg-black/70 backdrop-blur-2xl">
+            <Calendar size={12} className="text-[#c5a059]" />
+            <span className="text-[10px] font-black tracking-[0.4em] text-[#c5a059] uppercase">
+              {lang === 'ES' ? 'INGENIERÍA DIGITAL 2026' : '2026 DIGITAL ENGINEERING'}
             </span>
           </div>
         </div>
 
-        <h1 className="reveal text-white mb-6 leading-[1.1] tracking-tighter">
-          <span className="block text-4xl md:text-6xl font-light italic mb-2 luxury-serif">
-            {lang === 'ES' ? 'Tu negocio es grande,' : 'Your business is big,'}
+        <h1 className="reveal text-white mb-8 leading-[1.1] tracking-tighter max-w-5xl mx-auto">
+          <span className="block text-2xl md:text-5xl font-light italic mb-4 luxury-serif text-slate-100 drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]">
+            {lang === 'ES' 
+              ? 'Multiplica tus ventas con' 
+              : 'Multiply your sales with'}
           </span>
-          <span className="block text-5xl md:text-8xl font-black uppercase text-metallic-gold">
-            {lang === 'ES' ? 'HAZ QUE SE NOTE.' : 'MAKE IT SHOW.'}
+          <span className="block text-4xl md:text-8xl font-black uppercase text-gold-luxury leading-none drop-shadow-[0_15px_45px_rgba(0,0,0,0.9)]">
+            {lang === 'ES' 
+              ? 'ESTATUS Y PODER DIGITAL' 
+              : 'DIGITAL STATUS & POWER'}
           </span>
         </h1>
 
-        <p className="reveal text-slate-400 text-lg md:text-xl max-w-2xl mx-auto mb-12 font-light leading-relaxed">
+        <p className="reveal text-slate-100 text-lg md:text-2xl max-w-3xl mx-auto mb-12 font-semibold drop-shadow-[0_4px_12px_rgba(0,0,0,1)] leading-relaxed">
           {lang === 'ES' 
-            ? 'Deja de perder clientes por respuestas tardías en WhatsApp. Creamos tu identidad digital de lujo en 24h para que proyectes autoridad y cierres ventas en automático.' 
-            : 'Stop losing clients to late WhatsApp replies. We create your luxury digital identity in 24h so you project authority and close sales automatically.'}
+            ? 'Creamos activos digitales de alto impacto que proyectan autoridad global desde el primer segundo.' 
+            : 'We create high-impact digital assets that project global authority from the very first second.'}
         </p>
 
-        <div className="reveal flex flex-col sm:flex-row items-center gap-6 mb-16">
+        <div className="reveal flex flex-col sm:flex-row items-center justify-center gap-8 mb-16">
           <button 
             onClick={onLaunchClick}
-            className="btn-luxury group px-12 py-5 bg-white text-black font-black text-xs uppercase tracking-[0.2em] rounded-full shadow-2xl hover:scale-105 active:scale-95 transition-all flex items-center gap-3"
+            className="btn-gold px-14 py-6 shadow-[0_20px_60px_rgba(197,160,89,0.4)] flex items-center gap-5 text-[11px] tracking-[0.25em]"
           >
-            {lang === 'ES' ? 'QUIERO MI DISEÑO DE ÉLITE' : 'GET MY ELITE DESIGN'}
-            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+            {lang === 'ES' ? 'ADQUIRIR SISTEMA ELITE' : 'GET ELITE SYSTEM'}
+            <ArrowRight size={18} />
           </button>
           
-          <div className="flex items-center gap-2 text-[10px] font-bold text-slate-500 uppercase tracking-widest">
-            <ShieldCheck size={16} className="text-blue-500" />
-            {lang === 'ES' ? 'Sin anticipo. Primero lo ves, luego pagas.' : 'No upfront. See it first, then pay.'}
+          <div className="flex items-center gap-4 text-[10px] font-black text-white uppercase tracking-[0.2em] bg-black/40 border border-white/20 px-8 py-3 backdrop-blur-md rounded-lg shadow-2xl">
+            <CheckCircle2 size={18} className="text-[#c5a059]" />
+            {lang === 'ES' ? 'ENTREGA GARANTIZADA' : 'GUARANTEED DELIVERY'}
           </div>
         </div>
 
         <div className="reveal flex flex-col items-center">
-           <div className="flex items-baseline gap-2">
-             <span className="text-slate-500 line-through text-xl md:text-2xl font-light italic">
+           <div className="flex items-baseline gap-4">
+             <span className="text-slate-400 line-through text-2xl font-light italic">
                {currency === 'MXN' ? '$9,000' : '$500'}
              </span>
-             <span className="text-white text-4xl md:text-7xl font-black tracking-tighter luxury-serif">
-               ${price}.00 <span className="text-sm md:text-lg text-blue-500 font-black tracking-widest uppercase">+{currency}</span>
+             <span className="text-white text-6xl md:text-8xl font-black luxury-serif drop-shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
+               ${price}.00 <span className="text-xl text-[#c5a059] font-black uppercase tracking-widest">{currency}</span>
              </span>
            </div>
-           <p className="text-[10px] text-blue-400 font-bold uppercase tracking-[0.4em] mt-4 italic">
-             {lang === 'ES' ? 'OFERTA LIMITADA PARA NUEVOS SOCIOS' : 'LIMITED OFFER FOR NEW PARTNERS'}
+           <p className="text-[11px] text-white font-black uppercase tracking-[0.4em] mt-8 italic flex items-center gap-4 bg-black/80 backdrop-blur-xl px-8 py-4 rounded-full border border-[#c5a059]/30 shadow-[0_20px_40px_rgba(0,0,0,0.5)]">
+             <ShieldCheck size={16} className="text-[#c5a059]" />
+             {lang === 'ES' 
+               ? `MANTENIMIENTO INCLUIDO • PANEL DE CONTROL • PAGO ÚNICO` 
+               : `MAINTENANCE INCLUDED • CONTROL PANEL • ONE-TIME PAYMENT`}
            </p>
         </div>
-
       </div>
     </section>
   );

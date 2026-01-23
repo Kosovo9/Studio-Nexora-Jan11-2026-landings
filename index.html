@@ -4,60 +4,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STUDIO NEXORA | Identidades Digitales de Lujo</title>
+    <title>NEXORA REAL ESTATE | Autoridad Digital de Élite</title>
     
-    <!-- Build Signature: v1.2.0-BOUTIQUE-EDITION -->
-    <meta name="description" content="Studio Nexora: Transformamos negocios locales en marcas de élite. Landings de alto impacto con entrega en 24h. Proyecta autoridad y multiplica tus ventas hoy.">
+    <meta name="description" content="Sistemas de comercialización digital para profesionales y empresas de lujo. Maximice su ROI y proyecte autoridad global hoy.">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
 
     <script src="https://cdn.tailwindcss.com"></script>
     
     <style>
         :root {
-            --nexora-navy: #030711;
-            --nexora-gold: #eab308;
-            --nexora-soft-gold: #fefce8;
+            --nexora-navy: #030712;
+            --nexora-gold: #c5a059;
+            --nexora-soft-bg: #0a0f1e;
         }
         
-        * {
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
-
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--nexora-navy);
-            color: #ffffff;
+            background-color: #030712;
+            color: #f1f5f9;
             margin: 0;
-            overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
         }
 
         h1, h2, h3, .luxury-serif {
             font-family: 'Playfair Display', serif;
         }
 
-        .text-metallic-gold {
-            background: linear-gradient(
-                90deg, 
-                #eab308 0%, 
-                #fefce8 25%, 
-                #ffffff 50%, 
-                #fefce8 75%, 
-                #eab308 100%
-            );
-            background-size: 200% auto;
+        .text-gold-luxury {
+            background: linear-gradient(135deg, #c5a059 0%, #f1e4c3 50%, #c5a059 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: shimmer-sweep 4s linear infinite;
-        }
-
-        @keyframes shimmer-sweep {
-            0% { background-position: -200% center; }
-            100% { background-position: 200% center; }
+            filter: drop-shadow(0 0 10px rgba(197, 160, 89, 0.3));
         }
 
         .reveal {
@@ -70,42 +51,63 @@
             transform: translateY(0);
         }
 
-        .glass {
-            background: rgba(255, 255, 255, 0.015);
-            backdrop-filter: blur(24px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+        .glass-luxury {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, #c5a059 0%, #f1e4c3 100%);
+            color: #0f172a;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .btn-gold:hover {
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: 0 20px 40px rgba(197, 160, 89, 0.4);
+        }
+
+        /* Animación de Fondo Metálico */
+        .bg-metallic-mesh {
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(30, 41, 59, 0.4) 0, transparent 50%), 
+                radial-gradient(at 50% 0%, rgba(197, 160, 89, 0.05) 0, transparent 50%), 
+                radial-gradient(at 100% 0%, rgba(37, 99, 235, 0.1) 0, transparent 50%);
+            background-attachment: fixed;
+        }
+
+        @keyframes metallic-shimmer {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .shimmer-text {
+            background: linear-gradient(90deg, #fff, #c5a059, #fff);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: metallic-shimmer 4s linear infinite;
         }
 
         #loader {
             position: fixed;
             inset: 0;
-            background: #030711;
+            background: #030712;
             display: flex;
             align-items: center;
             justify-content: center;
             z-index: 9999;
         }
 
-        .btn-luxury {
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s ease;
-        }
-        .btn-luxury::after {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%;
-            width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: 0.5s;
-        }
-        .btn-luxury:hover::after {
-            left: 100%;
-        }
-
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-track { background: #030711; }
-        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #030712; }
+        ::-webkit-scrollbar-thumb { background: #c5a059; border-radius: 10px; }
     </style>
 <script type="importmap">
 {
@@ -122,9 +124,9 @@
 }
 </script>
 </head>
-<body>
+<body class="bg-metallic-mesh">
     <div id="loader">
-        <div class="luxury-serif text-white text-2xl italic tracking-widest animate-pulse">Nexora</div>
+        <div class="luxury-serif text-white text-3xl italic tracking-widest opacity-80 shimmer-text">Studio Nexora</div>
     </div>
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
@@ -133,7 +135,7 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) entry.target.classList.add('active');
             });
-        }, { threshold: 0.05 });
+        }, { threshold: 0.1 });
         
         setInterval(() => {
             document.querySelectorAll('.reveal:not(.active)').forEach(el => observer.observe(el));
@@ -142,9 +144,9 @@
         const checkRoot = setInterval(() => {
             const root = document.getElementById('root');
             if (root && root.innerHTML !== "") {
-                const loader = document.getElementById('loader');
-                if (loader) loader.style.opacity = '0';
-                setTimeout(() => { if (loader) loader.style.display = 'none'; }, 800);
+                const ld = document.getElementById('loader');
+                ld.style.opacity = '0';
+                setTimeout(() => { ld.style.display = 'none'; }, 600);
                 clearInterval(checkRoot);
             }
         }, 100);

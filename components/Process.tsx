@@ -1,5 +1,6 @@
+
 import React from 'react';
-import { MessageSquare, FolderPlus, Rocket } from 'lucide-react';
+import { MessageSquare, Image, Rocket } from 'lucide-react';
 
 interface ProcessProps {
   lang: 'ES' | 'EN';
@@ -8,53 +9,49 @@ interface ProcessProps {
 export const Process: React.FC<ProcessProps> = ({ lang }) => {
   const steps = [
     {
-      icon: <MessageSquare size={24} />,
-      num: "01",
-      title: lang === 'ES' ? 'Sincronía Inicial' : 'Initial Sync',
-      desc: lang === 'ES' ? 'Reservas tu lugar de Socio vía WhatsApp. Definimos visión y objetivos.' : 'Reserve your Partner spot via WhatsApp. We define vision and goals.'
+      icon: <MessageSquare size={32} />,
+      num: "1",
+      title: lang === 'ES' ? 'Platicamos' : 'We Talk',
+      desc: lang === 'ES' ? 'Cuéntanos sobre tu negocio por WhatsApp. Sin contratos complicados.' : 'Tell us about your business on WhatsApp. No complicated contracts.'
     },
     {
-      icon: <FolderPlus size={24} />,
-      num: "02",
-      title: lang === 'ES' ? 'Entrega de Assets' : 'Asset Delivery',
-      desc: lang === 'ES' ? 'Envías logos, fotos e info básica. Nosotros orquestamos la narrativa.' : 'Send logos, photos, and basic info. We orchestrate the narrative.'
+      icon: <Image size={32} />,
+      num: "2",
+      title: lang === 'ES' ? 'Diseñamos' : 'We Design',
+      desc: lang === 'ES' ? 'Envíanos tus fotos e info. Creamos tu página de lujo en 24h.' : 'Send us your photos and info. We create your luxury page in 24h.'
     },
     {
-      icon: <Rocket size={24} />,
-      num: "03",
-      title: lang === 'ES' ? 'Despliegue Élite' : 'Elite Deployment',
-      desc: lang === 'ES' ? 'Estrenas en 24h. Si el resultado te enamora, procedemos al pago y entrega final.' : 'Launch in 24h. If the result captivates you, we proceed to payment and final delivery.'
+      icon: <Rocket size={32} />,
+      num: "3",
+      title: lang === 'ES' ? 'Vende' : 'You Sell',
+      desc: lang === 'ES' ? 'Lanzamos tu sitio. Si te encanta, pagas y empiezas a captar clientes.' : 'We launch your site. If you love it, you pay and we start capturing clients.'
     }
   ];
 
   return (
-    <section id="process" className="py-24 bg-[#050a14] relative overflow-hidden">
+    <section id="process" className="py-24 bg-[#030711] relative overflow-hidden border-t border-white/5">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-24 reveal">
-          <div className="text-blue-500 font-mono text-[10px] mb-6 tracking-[0.5em] uppercase font-bold">NEXORA PROTOCOL</div>
-          {/* TITULAR RECTIFICADO: DOBLE ESPACIO (1.4) Y BALANCEADO AL 10X */}
-          <h2 className="text-3xl md:text-[3.4rem] font-black text-white mb-8 uppercase leading-[1.4] tracking-tighter">
-            {lang === 'ES' ? 'INGENIERÍA EN' : 'ENGINEERING IN'} <br/>
-            <span className="text-blue-500">{lang === 'ES' ? '3 FASES CRÍTICAS' : '3 CRITICAL PHASES'}</span>
+          <h2 className="text-3xl md:text-[3.4rem] font-black text-white mb-8 uppercase leading-[1.4] tracking-tighter luxury-serif">
+            {lang === 'ES' ? 'TU CAMINO A' : 'THE ROAD TO'} <br/>
+            <span className="text-[#c5a059]">{lang === 'ES' ? 'TUS PRIMERAS VENTAS' : 'YOUR FIRST SALES'}</span>
           </h2>
-          <div className="w-24 h-1 bg-blue-600/30 mx-auto rounded-full"></div>
+          <div className="w-24 h-1 bg-[#c5a059]/30 mx-auto rounded-full"></div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
-          <div className="hidden md:block absolute top-12 left-1/4 right-1/4 h-px bg-gradient-to-r from-transparent via-blue-500/20 to-transparent"></div>
-          
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-16 relative">
           {steps.map((s, i) => (
-            <div key={i} className="group relative text-center reveal" style={{ transitionDelay: `${i * 200}ms` }}>
-              <div className="mb-8 relative inline-flex items-center justify-center">
-                 <div className="w-24 h-24 rounded-[2rem] bg-white/5 border border-white/10 flex items-center justify-center text-blue-500 group-hover:border-blue-500 group-hover:bg-blue-600/10 transition-all duration-700 transform group-hover:-translate-y-2 group-hover:rotate-6">
+            <div key={i} className="group relative text-center reveal">
+              <div className="mb-10 relative inline-flex items-center justify-center">
+                 <div className="w-24 h-24 rounded-3xl bg-white/5 border border-white/10 flex items-center justify-center text-[#c5a059] group-hover:bg-[#c5a059]/10 transition-all duration-700">
                    {s.icon}
                  </div>
-                 <div className="absolute -top-4 -right-4 w-10 h-10 rounded-full bg-blue-600 text-white font-mono font-black flex items-center justify-center text-sm shadow-xl">
+                 <div className="absolute -top-4 -right-4 w-10 h-10 rounded-full bg-[#c5a059] text-[#050a14] font-black flex items-center justify-center text-sm shadow-xl">
                    {s.num}
                  </div>
               </div>
-              <h3 className="text-xl font-black text-white mb-4 tracking-tighter uppercase">{s.title}</h3>
-              <p className="text-slate-400 leading-relaxed text-sm md:text-base max-w-xs mx-auto font-medium">{s.desc}</p>
+              <h3 className="text-2xl font-black text-white mb-4 tracking-tighter uppercase">{s.title}</h3>
+              <p className="text-slate-500 leading-relaxed text-base font-light italic">"{s.desc}"</p>
             </div>
           ))}
         </div>

@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState, useCallback } from 'react';
 import { X, ArrowRight, Globe, DollarSign, Settings } from 'lucide-react';
 
@@ -33,7 +34,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, lang, currenc
         }
       }
     }
-  }, [lang, menuItems]);
+  }, [lang]);
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -66,50 +67,52 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, lang, currenc
       />
       
       <div className={`fixed top-0 left-0 bottom-0 z-[201] w-[320px] bg-[#030711] border-r border-white/5 transform transition-transform duration-500 flex flex-col ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
-        <div className="p-8 flex items-center justify-between border-b border-white/5">
-          <div className="flex items-center gap-3">
-            <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></div>
-            <span className="text-blue-500 font-black tracking-widest text-[10px] uppercase">Nexora OS Navigation</span>
+        {/* Header - Refinado */}
+        <div className="p-6 flex items-center justify-between border-b border-white/5 bg-white/[0.01]">
+          <div className="flex items-center gap-2.5">
+            <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></div>
+            <span className="text-blue-500 font-black tracking-[0.25em] text-[9px] uppercase">Nexora OS Navigation</span>
           </div>
-          <button onClick={onClose} className="w-10 h-10 flex items-center justify-center text-slate-500 hover:text-white transition-colors" aria-label="Cerrar Menú">
-            <X size={24} />
+          <button onClick={onClose} className="w-8 h-8 flex items-center justify-center text-slate-500 hover:text-white transition-colors bg-white/5 rounded-lg border border-white/5" aria-label="Cerrar Menú">
+            <X size={16} />
           </button>
         </div>
 
-        <nav className="flex-1 px-10 py-12 flex flex-col gap-8 overflow-y-auto">
+        {/* Navegación - Calibrada a text-xl para elegancia */}
+        <nav className="flex-1 px-8 py-10 flex flex-col gap-8 overflow-y-auto">
           {menuItems.map((item) => (
             <button
               key={item.id}
               onClick={() => handleNav(item.id)}
               className="group flex items-center justify-between text-left outline-none transition-transform active:scale-95"
             >
-              <span className={`text-4xl font-black tracking-tighter transition-all duration-300 uppercase ${activeSection === item.id ? 'text-white translate-x-4' : 'text-slate-700 group-hover:text-slate-300 group-hover:translate-x-2'}`}>
+              <span className={`text-xl md:text-2xl font-black tracking-tighter transition-all duration-300 uppercase ${activeSection === item.id ? 'text-white translate-x-2' : 'text-slate-600 group-hover:text-slate-300 group-hover:translate-x-1'}`}>
                 {item.label}
               </span>
               {activeSection === item.id && (
-                <div className="w-3 h-3 rounded-full bg-blue-600 shadow-[0_0_20px_rgba(37,99,235,1)]" />
+                <div className="w-1.5 h-1.5 rounded-full bg-blue-600 shadow-[0_0_10px_rgba(37,99,235,0.8)]" />
               )}
             </button>
           ))}
         </nav>
 
-        {/* Sección de Preferencias para Móvil */}
-        <div className="px-8 py-6 bg-white/[0.02] border-t border-white/5">
-           <div className="flex items-center gap-2 mb-4">
+        {/* Ajustes de Sesión */}
+        <div className="px-8 py-8 bg-white/[0.02] border-t border-white/5">
+           <div className="flex items-center gap-2 mb-5">
               <Settings size={12} className="text-blue-500" />
-              <span className="text-[9px] font-black text-slate-500 uppercase tracking-widest">{lang === 'ES' ? 'AJUSTES DE SESIÓN' : 'SESSION SETTINGS'}</span>
+              <span className="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em]">{lang === 'ES' ? 'AJUSTES DE SESIÓN' : 'SESSION SETTINGS'}</span>
            </div>
            <div className="grid grid-cols-2 gap-3">
               <button 
                 onClick={toggleCurrency}
-                className="flex items-center justify-center gap-2 py-3 bg-white/5 border border-white/10 rounded-xl text-[10px] font-black text-white uppercase tracking-widest hover:bg-blue-600/10 transition-all"
+                className="flex items-center justify-center gap-2.5 py-3.5 bg-white/5 border border-white/10 rounded-xl text-[10px] font-black text-white uppercase tracking-widest hover:bg-blue-600/10 transition-all active:scale-95"
               >
                 <DollarSign size={14} className="text-blue-500" />
                 {currency}
               </button>
               <button 
                 onClick={toggleLang}
-                className="flex items-center justify-center gap-2 py-3 bg-white/5 border border-white/10 rounded-xl text-[10px] font-black text-white uppercase tracking-widest hover:bg-blue-600/10 transition-all"
+                className="flex items-center justify-center gap-2.5 py-3.5 bg-white/5 border border-white/10 rounded-xl text-[10px] font-black text-white uppercase tracking-widest hover:bg-blue-600/10 transition-all active:scale-95"
               >
                 <Globe size={14} className="text-blue-500" />
                 {lang}
@@ -117,15 +120,15 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, lang, currenc
            </div>
         </div>
 
-        {/* Footer del Sidebar */}
+        {/* Footer Sidebar */}
         <div className="p-8 border-t border-white/5 bg-blue-600/5">
-           <div className="flex items-center gap-4">
-              <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center shadow-lg shadow-blue-600/30">
-                 <ArrowRight size={18} className="text-white" />
+           <div className="flex items-center gap-4 group cursor-pointer">
+              <div className="w-9 h-9 rounded-lg bg-blue-600 flex items-center justify-center shadow-lg shadow-blue-600/30 group-hover:scale-105 transition-transform">
+                 <ArrowRight size={16} className="text-white" />
               </div>
-              <div>
-                <span className="block text-white text-[11px] font-black uppercase tracking-widest leading-none mb-1">Direct Sales</span>
-                <span className="block text-blue-500 text-[9px] font-bold uppercase tracking-widest">Growth Mode</span>
+              <div className="flex flex-col">
+                <span className="block text-white text-[10px] font-black uppercase tracking-[0.15em] leading-tight mb-0.5">Direct Sales</span>
+                <span className="block text-blue-500 text-[9px] font-bold uppercase tracking-[0.2em]">Growth Mode</span>
               </div>
            </div>
         </div>

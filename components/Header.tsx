@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Globe, DollarSign, ArrowRight, Menu, X, ShieldCheck, CheckCircle2 } from 'lucide-react';
 import { Sidebar } from './Sidebar';
@@ -52,9 +53,9 @@ export const Header: React.FC<HeaderProps> = ({ lang, toggleLang, currency, togg
             </div>
           </div>
 
-          {/* Actions - Ahora visibles en móvil */}
+          {/* Actions - Calibrado para legibilidad móvil */}
           <div className="flex items-center gap-1.5 md:gap-4">
-            {/* Admin Secret Button (Solo visible para el socio) */}
+            {/* Admin Secret Button */}
             <button 
               onDoubleClick={onOpenAdmin}
               className="w-8 h-8 md:w-10 md:h-10 flex items-center justify-center text-white/5 hover:text-blue-500/40 transition-colors group relative"
@@ -63,28 +64,28 @@ export const Header: React.FC<HeaderProps> = ({ lang, toggleLang, currency, togg
               <ShieldCheck size={14} className="md:w-4 md:h-4" />
             </button>
 
-            {/* Currency Toggle - Compacto en móvil */}
+            {/* Currency Toggle */}
             <button 
               onClick={toggleCurrency}
-              className="flex items-center gap-1 md:gap-2 px-2.5 py-2 md:px-4 md:py-2 bg-white/5 border border-white/10 rounded-lg md:rounded-xl text-[9px] md:text-[11px] font-black text-white uppercase tracking-widest hover:bg-white/10 transition-all animate-flash-elite"
+              className="flex items-center gap-1 md:gap-2 px-3 py-2 md:px-4 md:py-2 bg-white/5 border border-white/10 rounded-lg md:rounded-xl text-[11px] md:text-[12px] font-black text-white uppercase tracking-widest hover:bg-white/10 transition-all"
             >
               <DollarSign size={14} className="text-blue-500 md:w-[18px] md:h-[18px]" />
               <span className="hidden xs:inline">$</span> {currency}
             </button>
 
-            {/* Lang Toggle - Compacto en móvil */}
+            {/* Lang Toggle */}
             <button 
               onClick={toggleLang}
-              className="flex items-center gap-1 md:gap-2 px-2.5 py-2 md:px-4 md:py-2 bg-white/5 border border-white/10 rounded-lg md:rounded-xl text-[9px] md:text-[11px] font-black text-white uppercase tracking-widest hover:bg-white/10 transition-all animate-flash-elite"
+              className="flex items-center gap-1 md:gap-2 px-3 py-2 md:px-4 md:py-2 bg-white/5 border border-white/10 rounded-lg md:rounded-xl text-[11px] md:text-[12px] font-black text-white uppercase tracking-widest hover:bg-white/10 transition-all"
             >
               <Globe size={14} className="text-blue-500 md:w-[18px] md:h-[18px]" />
               {lang}
             </button>
 
-            {/* Launch Button - Ajustado para móvil */}
+            {/* Launch Button */}
             <button 
               onClick={onContactClick}
-              className="flex items-center gap-2 md:gap-3 px-4 py-2.5 md:px-8 md:py-3.5 bg-blue-600 text-white text-[9px] md:text-[11px] font-black uppercase tracking-[0.1em] md:tracking-[0.2em] rounded-lg md:rounded-2xl hover:bg-blue-500 transition-all shadow-xl shadow-blue-600/30 group ml-1 md:ml-0"
+              className="flex items-center gap-2 md:gap-3 px-4 py-2.5 md:px-8 md:py-3.5 bg-blue-600 text-white text-[10px] md:text-[11px] font-black uppercase tracking-[0.1em] md:tracking-[0.2em] rounded-lg md:rounded-2xl hover:bg-blue-500 transition-all shadow-xl shadow-blue-600/30 group ml-1 md:ml-0"
             >
               <span className="hidden xs:inline">{lang === 'ES' ? 'ESTRENAR' : 'LAUNCH'}</span>
               <span className="xs:hidden">{lang === 'ES' ? 'GO' : 'GO'}</span>

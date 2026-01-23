@@ -1,6 +1,7 @@
+
 import React from 'react';
 import { Globe2, TrendingDown, ShieldCheck } from 'lucide-react';
-import { CURRENCY_MXN, CURRENCY_USD } from '../constants';
+import { CURRENCY_MXN, CURRENCY_USD, DOMAIN_START_MXN, DOMAIN_START_USD } from '../constants';
 
 interface PriceComparisonProps {
   lang: 'ES' | 'EN';
@@ -9,7 +10,7 @@ interface PriceComparisonProps {
 
 export const PriceComparison: React.FC<PriceComparisonProps> = ({ lang, currency }) => {
   const nexoraPrice = currency === 'USD' ? CURRENCY_USD : CURRENCY_MXN;
-  const nexoraLabel = currency === 'USD' ? '+USD' : '+MXN';
+  const domPrice = currency === 'MXN' ? DOMAIN_START_MXN : DOMAIN_START_USD;
 
   const rows = [
     { 
@@ -31,73 +32,63 @@ export const PriceComparison: React.FC<PriceComparisonProps> = ({ lang, currency
   ];
 
   return (
-    <section id="pricing" className="py-32 bg-[#030711] relative overflow-hidden border-t border-white/5">
+    <section id="pricing" className="py-20 bg-[#030711] relative overflow-hidden border-t border-white/5">
       <div className="max-w-[1300px] mx-auto px-6">
         
-        <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-8 reveal">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8 reveal">
            <div className="max-w-2xl">
-              <h2 className="text-white font-black text-[11px] uppercase tracking-[0.4em] mb-8 flex items-center gap-3">
-                <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></div>
-                {lang === 'ES' ? 'ANÁLISIS DE MERCADO 2026' : '2026 MARKET ANALYSIS'}
+              <h2 className="text-white font-black text-[10px] uppercase tracking-[0.4em] mb-4 flex items-center gap-3">
+                <div className="w-2 h-2 rounded-full bg-[#c5a059] animate-pulse"></div>
+                {lang === 'ES' ? 'OPORTUNIDAD EXCLUSIVA' : 'EXCLUSIVE OPPORTUNITY'}
               </h2>
-              {/* TITULAR RECTIFICADO: DOBLE ESPACIO (1.4) Y BALANCEADO */}
-              <p className="text-3xl md:text-[2.8rem] font-black text-white uppercase leading-[1.4] tracking-tighter">
+              <p className="text-3xl md:text-[2.5rem] font-black text-white uppercase leading-[1.2] tracking-tighter">
                 {lang === 'ES' ? 'VALOR REAL DE TU' : 'REAL VALUE OF YOUR'} <br/>
-                <span className="text-blue-500">{lang === 'ES' ? 'INGENIERÍA' : 'ENGINEERING'}</span>
+                <span className="text-[#c5a059]">{lang === 'ES' ? 'IDENTIDAD DIGITAL' : 'DIGITAL IDENTITY'}</span>
               </p>
            </div>
-           <div className="flex items-center gap-6 bg-white/5 border border-white/10 px-8 py-5 rounded-2xl backdrop-blur-xl">
-              <TrendingDown className="text-green-500" size={24} />
-              <p className="text-[11px] font-black text-slate-400 uppercase tracking-widest leading-relaxed">
-                {lang === 'ES' ? '90% MÁS ACCESIBLE QUE' : '90% MORE ACCESSIBLE THAN'} <br/>
-                {lang === 'ES' ? 'AGENCIAS TRADICIONALES' : 'TRADITIONAL AGENCIES'}
+           <div className="bg-white/5 border border-white/10 px-6 py-4 rounded-xl backdrop-blur-xl">
+              <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-relaxed">
+                {lang === 'ES' ? '90% MÁS ACCESIBLE POR' : '90% MORE ACCESSIBLE FOR'} <br/>
+                {lang === 'ES' ? 'TIEMPO LIMITADO' : 'LIMITED TIME'}
               </p>
            </div>
         </div>
 
-        <div className="glass rounded-[3rem] border border-white/5 overflow-hidden shadow-[0_40px_100px_rgba(0,0,0,0.6)] relative reveal">
+        <div className="glass-luxury border-white/5 overflow-hidden shadow-2xl reveal">
           <div className="overflow-x-auto">
             <table className="w-full text-left min-w-[600px]">
               <thead>
                 <tr className="border-b border-white/5 bg-white/[0.01]">
-                  <th className="px-12 py-10 text-[11px] font-black text-slate-500 uppercase tracking-[0.3em]">
+                  <th className="px-10 py-6 text-[10px] font-black text-[#c5a059] uppercase tracking-[0.3em]">
                     {lang === 'ES' ? 'REGIÓN' : 'REGION'}
                   </th>
-                  <th className="px-12 py-10 text-[11px] font-black text-slate-500 uppercase tracking-[0.3em]">
-                    {lang === 'ES' ? 'PRECIO MERCADO (USD)' : 'MARKET PRICE (USD)'}
+                  <th className="px-10 py-6 text-[10px] font-black text-[#c5a059] uppercase tracking-[0.3em]">
+                    {lang === 'ES' ? 'MERCADO (USD)' : 'MARKET (USD)'}
                   </th>
-                  <th className="px-12 py-10 text-[11px] font-black text-blue-500 uppercase tracking-[0.3em] text-right">
-                    {lang === 'ES' ? 'PRECIO NEXORA (PROMO)' : 'NEXORA PRICE (PROMO)'}
+                  <th className="px-10 py-6 text-[10px] font-black text-[#c5a059] uppercase tracking-[0.3em] text-right">
+                    {lang === 'ES' ? 'PROMO SOCIO' : 'PARTNER PROMO'}
                   </th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-white/5">
                 {rows.map((row, idx) => (
-                  <tr key={idx} className="group hover:bg-white/[0.02] transition-all duration-500">
-                    <td className="px-12 py-8">
-                      <div className="flex items-center gap-5">
-                        <Globe2 size={18} className="text-slate-600 group-hover:text-blue-500 transition-colors" />
-                        <span className="text-lg md:text-xl font-black text-white uppercase tracking-tighter group-hover:translate-x-3 transition-transform">
-                          {row.region}
-                        </span>
-                      </div>
+                  <tr key={idx} className="group hover:bg-white/[0.02] transition-colors">
+                    <td className="px-10 py-6">
+                      <span className="text-base font-black text-white uppercase tracking-tighter group-hover:text-[#c5a059] transition-colors">
+                        {row.region}
+                      </span>
                     </td>
-                    <td className="px-12 py-8">
-                      <span className="text-sm md:text-base font-bold text-slate-500 italic tracking-tight opacity-80">
+                    <td className="px-10 py-6">
+                      <span className="text-lg font-bold text-white italic tracking-tight">
                         {row.market}
                       </span>
                     </td>
-                    <td className="px-12 py-8 text-right">
-                      <div className="inline-flex flex-col items-end">
-                        <div className="flex items-center">
-                           <span className="text-metallic-gold text-lg md:text-2xl font-black mr-2">$</span>
-                           <span className="text-3xl md:text-5xl font-black text-metallic-gold tracking-tighter drop-shadow-[0_0_25px_rgba(234,179,8,0.3)]">
-                             {nexoraPrice}
-                           </span>
-                        </div>
-                        <span className="text-[11px] font-black text-slate-600 tracking-[0.4em] uppercase mt-1">
-                          {nexoraLabel}
-                        </span>
+                    <td className="px-10 py-6 text-right">
+                      <div className="flex items-center justify-end">
+                         <span className="text-[#c5a059] text-xl font-black mr-1">$</span>
+                         <span className="text-3xl font-black text-white tracking-tighter">
+                           {nexoraPrice}
+                         </span>
                       </div>
                     </td>
                   </tr>
@@ -106,22 +97,14 @@ export const PriceComparison: React.FC<PriceComparisonProps> = ({ lang, currency
             </table>
           </div>
 
-          <div className="p-10 bg-blue-600/[0.03] border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-10">
-             <div className="flex items-center gap-5">
-               <ShieldCheck className="text-blue-500" size={24} />
-               <p className="text-[12px] font-black text-slate-400 uppercase tracking-[0.2em]">
-                 {lang === 'ES' ? 'ESTÁNDARES DE CALIDAD MUNDIAL ASEGURADOS' : 'WORLD QUALITY STANDARDS SECURED'}
+          <div className="p-8 bg-[#c5a059]/[0.03] border-t border-white/5 flex items-center justify-center">
+             <div className="flex items-center gap-4">
+               <ShieldCheck className="text-[#c5a059]" size={20} />
+               <p className="text-[11px] font-black text-slate-300 uppercase tracking-[0.3em]">
+                 {lang === 'ES' 
+                   ? `DOMINIO DESDE $${domPrice} • PANEL INCLUIDO • PAGO ÚNICO` 
+                   : `DOMAIN FROM $${domPrice} • PANEL INCLUDED • ONE-TIME PAYMENT`}
                </p>
-             </div>
-             <div className="flex -space-x-4">
-               {[1,2,3,4,5].map(i => (
-                 <div key={i} className="w-10 h-10 rounded-full border-2 border-[#030711] bg-slate-800 overflow-hidden">
-                   <img src={`https://i.pravatar.cc/100?img=${i+15}`} alt="user" className="w-full h-full object-cover grayscale" />
-                 </div>
-               ))}
-               <div className="w-10 h-10 rounded-full border-2 border-[#030711] bg-blue-600 flex items-center justify-center text-[10px] font-black text-white">
-                 +12
-               </div>
              </div>
           </div>
         </div>

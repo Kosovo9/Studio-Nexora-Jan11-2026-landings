@@ -1,5 +1,7 @@
+
 import React, { useState } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
+import { DOMAIN_START_MXN, DOMAIN_START_USD } from '../constants';
 
 interface FAQProps {
   lang: 'ES' | 'EN';
@@ -25,7 +27,9 @@ export const FAQ: React.FC<FAQProps> = ({ lang }) => {
     },
     {
       q: lang === 'ES' ? '¿Puedo usar mi propio dominio?' : 'Can I use my own domain?',
-      a: lang === 'ES' ? '¡Sí! Podemos conectarla a un dominio que ya tengas (.com, .mx, etc.) o darte un subdominio nexorastudio.com gratuito.' : 'Yes! We can connect it to a domain you already own (.com, .mx, etc.) or provide a free nexorastudio.com subdomain.'
+      a: lang === 'ES' 
+        ? `¡Sí! Podemos conectarla a un dominio que ya tengas o registrar uno nuevo. Los dominios tienen un costo variable según la extensión (.com, .mx, .store), iniciando desde los $${DOMAIN_START_MXN} MXN ($${DOMAIN_START_USD} USD). También ofrecemos subdominios gratuitos.` 
+        : `Yes! We can connect it to a domain you already own or register a new one. Domains have a variable cost depending on the extension (.com, .mx, .store), starting from $${DOMAIN_START_MXN} MXN ($${DOMAIN_START_USD} USD). We also offer free subdomains.`
     }
   ];
 

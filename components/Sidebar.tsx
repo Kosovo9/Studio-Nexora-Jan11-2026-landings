@@ -66,7 +66,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, lang, currenc
         onClick={onClose}
       />
       
-      <div className={`fixed top-0 left-0 bottom-0 z-[201] w-[320px] bg-[#030711] border-r border-white/5 transform transition-transform duration-500 flex flex-col ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+      <div className={`fixed top-0 left-0 bottom-0 z-[201] w-[300px] bg-[#030711] border-r border-white/5 transform transition-transform duration-500 flex flex-col ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
         {/* Header - Refinado */}
         <div className="p-6 flex items-center justify-between border-b border-white/5 bg-white/[0.01]">
           <div className="flex items-center gap-2.5">
@@ -78,19 +78,19 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, lang, currenc
           </button>
         </div>
 
-        {/* Navegación - Calibrada a text-xl para elegancia */}
-        <nav className="flex-1 px-8 py-10 flex flex-col gap-8 overflow-y-auto">
+        {/* Navegación - Reducida un 25% para mayor elegancia (text-base md:text-lg) */}
+        <nav className="flex-1 px-8 py-10 flex flex-col gap-6 overflow-y-auto">
           {menuItems.map((item) => (
             <button
               key={item.id}
               onClick={() => handleNav(item.id)}
-              className="group flex items-center justify-between text-left outline-none transition-transform active:scale-95"
+              className="group flex items-center justify-between text-left outline-none transition-transform active:scale-95 py-1"
             >
-              <span className={`text-xl md:text-2xl font-black tracking-tighter transition-all duration-300 uppercase ${activeSection === item.id ? 'text-white translate-x-2' : 'text-slate-600 group-hover:text-slate-300 group-hover:translate-x-1'}`}>
+              <span className={`text-base md:text-lg font-black tracking-tighter transition-all duration-300 uppercase ${activeSection === item.id ? 'text-white translate-x-2' : 'text-slate-600 group-hover:text-slate-300 group-hover:translate-x-1'}`}>
                 {item.label}
               </span>
               {activeSection === item.id && (
-                <div className="w-1.5 h-1.5 rounded-full bg-blue-600 shadow-[0_0_10px_rgba(37,99,235,0.8)]" />
+                <div className="w-1 h-1 rounded-full bg-blue-600 shadow-[0_0_10px_rgba(37,99,235,0.8)]" />
               )}
             </button>
           ))}

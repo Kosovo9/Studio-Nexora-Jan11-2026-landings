@@ -96,19 +96,19 @@ const App: React.FC = () => {
         />
         
         <main className="relative z-10">
-          <Hero lang={lang} currency={currency} onLaunchClick={openCheckout} />
-          <WorkSamples lang={lang} onReserveClick={openCheckout} />
-          <PriceComparison lang={lang} currency={currency} />
-          <NicheBlueprints lang={lang} onActionClick={openCheckout} />
-          <Presentation lang={lang} currency={currency} onReserveClick={openCheckout} />
-          <Features lang={lang} />
-          <Rewards lang={lang} currency={currency} />
-          <ResponsiveShowcase lang={lang} />
-          <Process lang={lang} />
-          <UrgentService lang={lang} currency={currency} />
-          <PaymentFlow lang={lang} />
-          <Testimonials lang={lang} />
-          <FAQ lang={lang} />
+          <div id="Hero"><Hero lang={lang} currency={currency} onLaunchClick={openCheckout} /></div>
+          <div id="WorkSamples"><WorkSamples lang={lang} onReserveClick={openCheckout} /></div>
+          <div id="PriceComparison"><PriceComparison lang={lang} currency={currency} /></div>
+          <div id="NicheBlueprints"><NicheBlueprints lang={lang} onActionClick={openCheckout} /></div>
+          <div id="Presentation"><Presentation lang={lang} currency={currency} onReserveClick={openCheckout} /></div>
+          <div id="Features"><Features lang={lang} /></div>
+          <div id="Rewards"><Rewards lang={lang} currency={currency} /></div>
+          <div id="ResponsiveShowcase"><ResponsiveShowcase lang={lang} /></div>
+          <div id="Process"><Process lang={lang} /></div>
+          <div id="UrgentService"><UrgentService lang={lang} currency={currency} /></div>
+          <div id="PaymentFlow"><PaymentFlow lang={lang} /></div>
+          <div id="Testimonials"><Testimonials lang={lang} /></div>
+          <div id="FAQ"><FAQ lang={lang} /></div>
         </main>
 
         <Footer lang={lang} />

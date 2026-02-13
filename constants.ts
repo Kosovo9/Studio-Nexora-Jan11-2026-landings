@@ -15,7 +15,7 @@ export const EXAMPLES = {
 // Added missing constant for the demo asset used in Footer QR code
 export const REFERENCE_LANDING_LINK = "https://waee.netlify.app/";
 
-// Precios Promocionales (Enero)
+// Precios Promocionales (Febrero)
 export const CURRENCY_USD = "165";
 export const CURRENCY_MXN = "2,999";
 
